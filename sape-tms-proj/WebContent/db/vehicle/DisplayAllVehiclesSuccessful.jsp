@@ -17,11 +17,11 @@
 			<th>Capacity</th>
 		</tr>
 		<tr>
-			<c:forEach var="item" items="vehicles">
-				<td>${requestScope.vehicle.getId() }</td>
-				<td>${requestScope.vehicle.getModelName() }</td>
-				<td>${requestScope.vehicle.getBrandName() }</td>
-				<td>${requestScope.vehicle.getCapacity() }</td>
+			<c:forEach var="item" items="${requestScope.vehicles}">
+				<td>${item.getId() }</td>
+				<td>${item.getModelName() }</td>
+				<td>${item.getBrandName() }</td>
+				<td>${item.getCapacity() }</td>
 			</c:forEach>
 		</tr>
 	</table>
