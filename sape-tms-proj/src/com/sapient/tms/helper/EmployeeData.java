@@ -9,7 +9,7 @@ public class EmployeeData {
 	private Employee employee;
 
 	public void createEmployee(HttpServletRequest request) {
-		int employeeId = Integer.parseInt(request.getParameter("employeeId"));
+		int employeeId = Integer.parseInt(request.getParameter("id"));
 		String employeePassword = request.getParameter("password");
 		String employeeName = request.getParameter("name");
 		String employeeVehicleId = request.getParameter("vehicleId");

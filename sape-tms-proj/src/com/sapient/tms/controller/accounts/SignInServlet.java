@@ -13,18 +13,22 @@ import javax.servlet.http.HttpSession;
 
 import com.sapient.tms.helper.EmployeeAuthenticator;
 import com.sapient.tms.model.bean.Employee;
+import com.sapient.tms.model.bean.Request;
+import com.sapient.tms.model.bl.CentralLogic;
 
 /**
  * Servlet implementation class SignInServlet
  */
 public class SignInServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private CentralLogic centralLogic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public SignInServlet() {
 		super();
+		centralLogic = new CentralLogic();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -51,13 +55,20 @@ public class SignInServlet extends HttpServlet {
 			// If authentication is successful
 			else {
 				Employee employee = authenticationResult.getKey();
-				HttpSession session = request.getSession();
-				session.setAttribute("user", employee);
-				if(!employee.isAdmin()) {
-					response.sendRedirect("./EmployeeHomeView.jsp");
+				Request tempRequest = centralLogic.searchRequestByEmployeeId(employee.getId());
+				if(tempRequest != null) { 
+					request.setAttribute("status", "Your request is pending.");
+					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}
 				else {
-					response.sendRedirect("./AdminHomeView.jsp");
+					HttpSession session = request.getSession();
+					session.setAttribute("user", employee);
+					if(!employee.isAdmin()) {
+						response.sendRedirect("./EmployeeHomeView.jsp");
+					}
+					else {
+						response.sendRedirect("./AdminHomeView.jsp");
+					}
 				}
 			}
 		} catch (ClassNotFoundException | SQLException e) {

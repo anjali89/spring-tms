@@ -49,10 +49,10 @@ public class RequestLogic {
 		return requestDao.updateByRequestId(requestId, request);
 	}
 
-	public boolean createNewRequest(int employeeId, String string)
+	public boolean createNewRequest(int employeeId, String vehicleId)
 			throws ClassNotFoundException, SQLException, IOException {
 		int id = requestDao.getMaxId() + 1;
-		Request request = new Request(id, employeeId, string, null);
+		Request request = new Request(id, employeeId, vehicleId, null);
 		request.initiate();
 		return requestDao.insert(request);
 	}
