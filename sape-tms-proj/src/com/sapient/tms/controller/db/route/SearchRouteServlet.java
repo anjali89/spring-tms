@@ -35,13 +35,13 @@ public class SearchRouteServlet extends HttpServlet {
 			Route check = centralLogic.searchRoute(routeId);
 			if (check != null){
 				request.setAttribute("route", check);
-				response.getRequestDispatcher("./db/route/SearchRouteSuccessful").forward(request, response);
+				request.getRequestDispatcher("./db/route/SearchRouteSuccessful").forward(request, response);
 			}
 				
 			else
 			{
 				request.setAttribute("err", "Operation failed");
-				response.getRequestDispatcher("./db/route/SearchRouteFailed").forward(request, response);;
+				request.getRequestDispatcher("./db/route/SearchRouteFailed").forward(request, response);;
 				
 			}
 				response.sendRedirect("./db/route/SearchRouteFailed").forward(request, response);;

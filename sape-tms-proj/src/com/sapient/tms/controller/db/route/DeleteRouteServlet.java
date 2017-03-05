@@ -41,15 +41,15 @@ public class DeleteRouteServlet extends HttpServlet {
 			if (route != null) {
 				boolean check = routeLogic.delete(routeId);
 				if (check)
-					response.getRequestDispatcher("./db/route/DeleteRouteSuccessful.jsp").forward(request, response);
+					request.getRequestDispatcher("./db/route/DeleteRouteSuccessful.jsp").forward(request, response);
 				else
 				{
 					request.setAttribute("err", "Operation failed");
-					response.getRequestDispatcher("./db/route/DeleteRouteFailed.jsp").forward(request, response);
+					request.getRequestDispatcher("./db/route/DeleteRouteFailed.jsp").forward(request, response);
 				}
 				} else{
 					request.setAttribute("err", "Operation failed");
-			response.sendRedirect("./db/route/DeleteRouteFailed.jsp").forward(request, response);}
+			request.sendRedirect("./db/route/DeleteRouteFailed.jsp").forward(request, response);}
 		} catch (ClassNotFoundException|SQLException e) {
 			request.setAttribute("err", e.toString());
 			request.getRequestDispatcher("./DeleteRouteFailed.jsp").forward(request, response);
