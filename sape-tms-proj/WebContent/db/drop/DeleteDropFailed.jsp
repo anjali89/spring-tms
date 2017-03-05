@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Display All Vehicles Failed</title>
+<title>Insert Drop Failed</title>
 </head>
 <body>
 	<c:if test="${not empty requestScope.err}">

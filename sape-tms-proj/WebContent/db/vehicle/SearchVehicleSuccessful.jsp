@@ -4,26 +4,18 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert Vehicle successful</title>
+<title>Search Vehicle successful</title>
 </head>
 <body>
 	<h3>Result</h3>
 	<table>
 		<tr>
 			<th>ID</th>
-			<td>${requestScope.employee.getId() }</td>
+			<td>${requestScope.vehicle.getId() }</td>
 		</tr>
 		<tr>
 			<th>Model Name</th>
-			<td>${requestScope.employee.getName() }</td>
-		</tr>
-		<tr>
-			<th>Brand Name</th>
-			<td>${requestScope.vehicle.getBrandName() }</td>
-		</tr>
-		<tr>
-			<th>Capacity</th>
-			<td>${requestScope.vehicle.getCapacity() }</td>
+			<td>${requestScope.vehicle.getModelName() }</td>
 		</tr>
 	</table>
 	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>

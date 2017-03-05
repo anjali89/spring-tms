@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert Vehicle successful</title>
+<title>Delete Vehicle successful</title>
 </head>
 <body>
 	Operation Successful
