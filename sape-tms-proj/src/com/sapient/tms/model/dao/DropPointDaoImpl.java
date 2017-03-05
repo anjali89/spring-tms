@@ -94,7 +94,7 @@ public class DropPointDaoImpl implements DropPointDao {
 				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);) {
 			int updateCount;
 			preparedStatement.setString(1, newDrop.getName());
-			preparedStatement.setInt(2, newDrop.getId());
+			preparedStatement.setInt(2, id);
 			preparedStatement.execute();
 			updateCount = preparedStatement.getUpdateCount();
 			return updateCount > 0;

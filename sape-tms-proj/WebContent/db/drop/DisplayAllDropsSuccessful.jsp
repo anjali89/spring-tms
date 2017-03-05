@@ -5,12 +5,24 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Display All Vehicles Failed</title>
+<title>Insert Vehicle successful</title>
 </head>
 <body>
-	<c:if test="${not empty requestScope.err}">
-		<c:out value="${requestScope.err}"></c:out>
-	</c:if>
+	<h3>Result</h3>
+	<table>
+		<tr>
+			<th>ID</th>
+			<th>Name</th>
+		</tr>
+		<tr>
+			<c:forEach var="item" items="${requestScope.drops}">
+				<tr>
+					<td>${item.getId() }</td>
+					<td>${item.getName() }</td>
+				</tr>
+			</c:forEach>
+		</tr>
+	</table>
 	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
 </body>
 </html>

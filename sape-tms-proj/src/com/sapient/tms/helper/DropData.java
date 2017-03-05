@@ -13,7 +13,7 @@ public class DropData {
 	private int dropPointId;
 	private String dropPointName;
 
-	public void input(HttpServletRequest request) throws ClassNotFoundException, SQLException {
+	public void createDrop(HttpServletRequest request) throws ClassNotFoundException, SQLException {
 		CentralLogic centralLogic = new CentralLogic();
 		// System.out.println("Enter new Drop Point ID: ");
 		// dropPointId=sc.nextInt();
@@ -23,7 +23,7 @@ public class DropData {
 
 	}
 
-	public Drop getDropPoint() {
+	public Drop getDrop() {
 		return drop;
 	}
 

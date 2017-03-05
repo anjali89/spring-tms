@@ -4,12 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Delete Vehicle Form</title>
+<title>Update Drop Form</title>
 </head>
 <body>
-	<h1>Delete Vehicle</h1>
-	<form action="${pageContext.request.contextPath}/DeleteVehicle" method="post">
-		ID: <input type="text" name="id" required /><br>
+	<h1>Update Drop</h1>
+	<form action="${pageContext.request.contextPath}/UpdateDrop" method="post">
+		ID: <input type="number" name="id" required /><br>
+		Name: <input type="text" name="name" required /><br>
 		<input type="submit" value="Submit" />
 	</form>
 </body>

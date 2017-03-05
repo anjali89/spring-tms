@@ -5,12 +5,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Display All Vehicles Failed</title>
+<title>Failure Updating Employee</title>
 </head>
 <body>
+
 	<c:if test="${not empty requestScope.err}">
-		<c:out value="${requestScope.err}"></c:out>
+			<c:out value="${requestScope.err}"></c:out>
 	</c:if>
-	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
+		<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
+
 </body>
 </html>

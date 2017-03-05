@@ -27,6 +27,10 @@ public class DropLogic {
 	public boolean delete(int id) throws IOException, ClassNotFoundException, SQLException {
 		return dropDao.delete(id);
 	}
+	
+	public boolean update(int id, Drop newDrop) throws ClassNotFoundException, IOException, SQLException{
+		return dropDao.update(id, newDrop);
+	}
 
 	public int getMaxId() throws ClassNotFoundException, SQLException {
 		return dropDao.getMaxId();
