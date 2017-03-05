@@ -41,11 +41,11 @@ public class DeleteRouteServlet extends HttpServlet {
 			if (route != null) {
 				boolean check = routeLogic.delete(routeId);
 				if (check)
-					response.sendRedirect("./db/route/DeleteRouteSuccessful.jsp").forward(request, response);
+					response.getRequestDispatcher("./db/route/DeleteRouteSuccessful.jsp").forward(request, response);
 				else
 				{
 					request.setAttribute("err", "Operation failed");
-					response.sendRedirect("./db/route/DeleteRouteFailed.jsp").forward(request, response);
+					response.getRequestDispatcher("./db/route/DeleteRouteFailed.jsp").forward(request, response);
 				}
 				} else{
 					request.setAttribute("err", "Operation failed");
