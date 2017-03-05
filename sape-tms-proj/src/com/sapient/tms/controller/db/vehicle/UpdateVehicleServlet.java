@@ -44,7 +44,7 @@ public class UpdateVehicleServlet extends HttpServlet {
 			if (check) {
 				request.getRequestDispatcher("./db/vehicle/UpdateVehicleSuccessful.jsp").forward(request, response);
 			} else {
-				request.setAttribute("err", "Operation Failed");
+				request.setAttribute("err", "Entry Not Found");
 				request.getRequestDispatcher("./db/vehicle/UpdateVehicleFailed.jsp").forward(request, response);
 			}
 		}
