@@ -35,7 +35,7 @@ public class DeleteEmployeeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			PrintWriter pw = response.getWriter();
-			int employeeId = Integer.parseInt("id");
+			int employeeId = Integer.parseInt(request.getParameter("id"));
 			boolean success = employeeLogic.delete(employeeId);
 			if (success) {
 				request.getRequestDispatcher("./db/Employee/DeleteEmployeeSuccessful.jsp").forward(request, response);

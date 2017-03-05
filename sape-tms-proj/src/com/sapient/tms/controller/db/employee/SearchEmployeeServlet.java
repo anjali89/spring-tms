@@ -38,7 +38,7 @@ public class SearchEmployeeServlet extends HttpServlet {
 			throws ServletException, IOException {
 		try {
 			PrintWriter pw = response.getWriter();
-			int employeeId = Integer.parseInt("id");
+			int employeeId = Integer.parseInt(request.getParameter("id"));
 			Employee employee = employeeLogic.search(employeeId);
 			if (employee != null) {
 				request.setAttribute("employee", employee);
