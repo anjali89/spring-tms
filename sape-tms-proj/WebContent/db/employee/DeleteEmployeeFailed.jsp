@@ -1,27 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Search Employee Details</title>
+<title>Delete Employee Failed</title>
 </head>
 <body>
-	<h3>Result</h3>
-	<table>
-		<tr>
-			<th>ID</th>
-			<td>${requestScope.employee.getId() }</td>
-		</tr>
-		<tr>
-			<th>Model Name</th>
-			<td>${requestScope.vehicle.getModelName() }</td>
-		</tr>
-		<tr>
-			<th>Brand Name</th>
-			<td>${requestScope.employee.getVehicleId() }</td>
-		</tr>
-	</table>
+	<c:if test="${not empty requestScope.err}">
+		<c:out value="${requestScope.err}"></c:out>
+	</c:if>
 	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
 </body>
 </html>
