@@ -50,9 +50,9 @@ public class CentralLogic {
 		return requestLogic.displayAll();
 	}
 
-	public List<Employee> viewAllRideEmployees(int rideId) throws ClassNotFoundException, IOException, SQLException {
-		return employeeLogic.displayAllByRide(rideId);
-	}
+//public List<Employee> viewAllRideEmployees(int rideId) throws ClassNotFoundException, IOException, SQLException {
+	//		return employeeLogic.displayAllByRide(rideId);
+	//}
 
 	public boolean isValidRequestStatus(String requestStatus) {
 		return requestLogic.isValidStatus(requestStatus);
@@ -261,10 +261,10 @@ public class CentralLogic {
 		return employeeLogic.isAnyEmployeeAssignedToRide(rideId);
 	}
 
-	public List<Employee> displayAllEmployeesByRide(int rideId)
-			throws IOException, ClassNotFoundException, SQLException {
-		return employeeLogic.displayAllByRide(rideId);
-	}
+	//public List<Employee> displayAllEmployeesByRide(int rideId)
+	//		throws IOException, ClassNotFoundException, SQLException {
+	//	return employeeLogic.displayAllByRide(rideId);
+	//}
 
 	public boolean deleteRequestByEmployeeId(int employeeId) throws IOException, ClassNotFoundException, SQLException {
 		return requestLogic.deleteByEmployeeId(employeeId);

@@ -11,7 +11,7 @@ public class EmployeeData {
 	public void createEmployee(HttpServletRequest request) {
 		int employeeId = Integer.parseInt(request.getParameter("id"));
 		String employeePassword = request.getParameter("password");
-		String employeeName = request.getParameter("name");
+		String employeeName = request.getParameter("employeeName");
 		String employeeVehicleId = request.getParameter("vehicleId");
 		employee = new Employee(employeeId, employeePassword, employeeName, employeeVehicleId, false);
 	}

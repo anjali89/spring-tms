@@ -10,7 +10,7 @@
 	<h1>Update Employee Details</h1>
 	<form action="${pageContext.request.contextPath}/UpdateEmployee" method="post">
 		ID: <input type="text" name="id" required /><br>
-		New Password: <input type="text" name="password" required /><br>
+		New Password: <input type="password" name="password" required /><br>
 		Employee Name: <input type="text" name="employeeName" required /><br>
 		Vehicle id: <input type="text" name="vehicleId" required /><br>
 		Are you admin(y/n):<input type="text" name="isAdmin" required /><br>

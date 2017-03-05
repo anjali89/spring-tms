@@ -38,6 +38,8 @@ public class EmployeeLogic {
 
 	public List<Employee> displayAll() throws IOException, ClassNotFoundException, SQLException {
 		return employeeDao.displayAll();
+		
+	
 	}
 
 }
