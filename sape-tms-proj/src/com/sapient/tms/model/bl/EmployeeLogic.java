@@ -36,8 +36,8 @@ public class EmployeeLogic {
 		return employeeDao.getEmployeeCountForRide(rideId) > 0;
 	}
 
-	public List<Employee> displayAllByRide(int rideId) throws IOException, ClassNotFoundException, SQLException {
-		return employeeDao.displayAllByRide(rideId);
+	public List<Employee> displayAll() throws IOException, ClassNotFoundException, SQLException {
+		return employeeDao.displayAll();
 	}
 
 }
