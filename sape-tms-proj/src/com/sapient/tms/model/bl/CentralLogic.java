@@ -294,10 +294,13 @@ public class CentralLogic {
 	public List<Ride> displayAllAvailableRides() throws ClassNotFoundException, IOException, SQLException {
 		List<Ride> rides = new ArrayList<>();
 		for (Ride ride : rideLogic.displayAll()) {
+			ride.setVehicle(vehicleLogic.search(ride.getVehicle().getId()));
+			ride.setRoute(routeLogic.search(ride.getRoute().getId()));
 			if (ride.getSeatsAllocated() < ride.getVehicle().getCapacity()) {
 				rides.add(ride);
 			}
 		}
+		System.out.println(rideLogic.displayAll());
 		return rides;
 	}
 

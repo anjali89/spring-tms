@@ -8,6 +8,7 @@
 <title>Sign Up</title>
 </head>
 <body>
+	<% request.setAttribute("rides", new CentralLogic().displayAllAvailableRides()); %>
 	<c:if test="${not empty requestScope.err }">
 		<p id="errorMessage"><c:out value="${requestScope.err}"></c:out></p>
 	</c:if>
@@ -26,7 +27,8 @@
 				<th>Drop Start</th>
 				<th>Seats Allocated / Capacity</th>
 			</tr>
-			<c:forEach var="ride" items="<%=new CentralLogic().displayAllAvailableRides() %>">
+			<c:forEach var="ride" items="${requestScope.rides
+			 }">
 				<tr>
 					<td><input type="radio" name="vehicleId" value="${ride.getVehicle().getId()}" /></td>
 					<td>${ride.getVehicle().getBrandName()} ${ride.getVehicle().getModelName()}</td>

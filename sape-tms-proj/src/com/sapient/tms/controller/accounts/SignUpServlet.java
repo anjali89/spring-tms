@@ -57,7 +57,8 @@ public class SignUpServlet extends HttpServlet {
 				}
 			}
 		} catch(SQLException | ClassNotFoundException e) {
-			request.setAttribute("status", e.toString());
+			e.printStackTrace();
+			request.setAttribute("status", "Error.");
 			request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 		}
 		

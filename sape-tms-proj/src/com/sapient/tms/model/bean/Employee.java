@@ -12,7 +12,7 @@ public class Employee {
 		this.id = id;
 		this.password = pass;
 		this.name = name;
-		this.vehicleId = vehicleId;
+		this.vehicleId = employeeVehicleId;
 		this.isAdmin = isAdmin;
 	}
 
