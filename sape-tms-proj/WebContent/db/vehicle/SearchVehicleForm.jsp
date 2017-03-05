@@ -12,6 +12,12 @@
 		method="post">
 		ID: <input type="text" name="id" required /><br> <input
 			type="submit" value="Submit" />
-	</form>
+
+		<h1>Search Vehicle</h1>
+		<form action="${pageContext.request.contextPath}/SearchVehicle"
+			method="post">
+			ID: <input type="text" name="id" required /><br> <input
+				type="submit" value="Submit" />
+		</form>
 </body>
 </html>
