@@ -46,7 +46,7 @@ public class SignInServlet extends HttpServlet {
 			// If authentication fails
 			if (!isValidEmployee) {
 				request.setAttribute("err", "Invalid UserID Or Password");
-				request.getRequestDispatcher("accounts/signin/SignInForm.jsp").forward(request, response);
+				request.getRequestDispatcher("accounts/SignInForm.jsp").forward(request, response);
 			}
 			// If authentication is successful
 			else {
