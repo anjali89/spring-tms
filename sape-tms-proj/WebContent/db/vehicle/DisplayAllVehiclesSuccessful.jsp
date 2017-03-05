@@ -18,10 +18,12 @@
 		</tr>
 		<tr>
 			<c:forEach var="item" items="${requestScope.vehicles}">
-				<td>${item.getId() }</td>
-				<td>${item.getModelName() }</td>
-				<td>${item.getBrandName() }</td>
-				<td>${item.getCapacity() }</td>
+				<tr>
+					<td>${item.getId() }</td>
+					<td>${item.getModelName() }</td>
+					<td>${item.getBrandName() }</td>
+					<td>${item.getCapacity() }</td>
+				</tr>
 			</c:forEach>
 		</tr>
 	</table>
