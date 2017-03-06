@@ -289,4 +289,14 @@
     <servlet-name>DeleteRide</servlet-name>
     <url-pattern>/DeleteRide</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ViewRequests</display-name>
+    <servlet-name>ViewRequests</servlet-name>
+    <servlet-class>com.sapient.tms.controller.db.request.ViewRequestsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ViewRequests</servlet-name>
+    <url-pattern>/ViewRequests</url-pattern>
+  </servlet-mapping>
 </web-app>

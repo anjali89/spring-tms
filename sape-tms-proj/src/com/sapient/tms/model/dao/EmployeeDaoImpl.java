@@ -10,6 +10,8 @@ import java.util.List;
 
 import com.sapient.tms.helper.JDBCConnection;
 import com.sapient.tms.model.bean.Employee;
+import com.sapient.tms.model.bean.Ride;
+import com.sapient.tms.model.bean.Vehicle;
 
 public class EmployeeDaoImpl implements EmployeeDao {
 
@@ -31,7 +33,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			preparedStatement.setInt(1, employee.getId());
 			preparedStatement.setString(2, employee.getPassword());
 			preparedStatement.setString(3, employee.getName());
-			preparedStatement.setString(4, employee.getVehicleId());
+			preparedStatement.setString(4, employee.getRide().getVehicle().getId());
 			preparedStatement.setString(5, employee.isAdmin() ? "Y" : "N");
 			numAffectedRows = preparedStatement.executeUpdate();
 			preparedStatement.close();
@@ -53,7 +55,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String employeeName = rs.getString("name");
 				String employeeVehicleId = rs.getString("vehicle_id");
 				boolean isEmployeeAdmin = rs.getString("is_admin").equals("Y") ? true : false;
-				employee = new Employee(employeeId, employeePassword, employeeName, employeeVehicleId, isEmployeeAdmin);
+				Vehicle tempVehicle = new Vehicle(employeeVehicleId, null, null, 0);
+				Ride employeeRide = new Ride(tempVehicle, null, null, null, 0);
+				employee = new Employee(employeeId, employeePassword, employeeName, employeeVehicle, isEmployeeAdmin);
 				employeeList.add(employee);
 			}
 			rs.close();
@@ -75,8 +79,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String employeeName = rs.getString("name");
 				String employeeVehicleId = rs.getString("vehicle_id");
 				boolean isEmployeeAdmin = rs.getString("is_admin").equals("Y") ? true : false;
-				Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeVehicleId,
-						isEmployeeAdmin);
+				Vehicle employeeVehicle = new Vehicle(employeeVehicleId, null, null, 0);
+				Ride employeeRide = new Ride(employeeVehicle, null, null, null, 0);
+				Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeRide, isEmployeeAdmin);
 				employeeList.add(employee);
 			}
 			rs.close();
@@ -108,7 +113,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
 			preparedStatement.setString(1, newEmployee.getPassword());
 			preparedStatement.setString(2, newEmployee.getName());
-			preparedStatement.setString(3, newEmployee.getVehicleId());
+			preparedStatement.setString(3, newEmployee.getRide().getVehicle().getId());
 			preparedStatement.setString(4, newEmployee.isAdmin() ? "Y" : "N");
 			preparedStatement.setInt(5, newEmployee.getId());
 			preparedStatement.execute();

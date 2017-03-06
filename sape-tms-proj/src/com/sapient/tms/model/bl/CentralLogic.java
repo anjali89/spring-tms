@@ -62,10 +62,6 @@ public class CentralLogic {
 		return requestLogic.isValidId(requestIdString);
 	}
 
-	public boolean containsRequest(int requestId) throws ClassNotFoundException, IOException, SQLException {
-		return requestLogic.contains(requestId);
-	}
-
 	public boolean updateEmployee(int id, Employee loggedEmployee)
 			throws ClassNotFoundException, IOException, SQLException {
 		return employeeLogic.update(id, loggedEmployee);
@@ -82,20 +78,7 @@ public class CentralLogic {
 
 		return routeLogic.update(routeId, route);
 	}
-
-	public Request searchRequestByRequestId(int requestId) throws ClassNotFoundException, IOException, SQLException {
-		return requestLogic.searchByRequestId(requestId);
-	}
-
-	public boolean deleteRequestByRequestId(int requestId) throws ClassNotFoundException, IOException, SQLException {
-		return requestLogic.deleteByRequestId(requestId);
-	}
-
-	public boolean updateRequestByRequestId(int requestId, Request request)
-			throws ClassNotFoundException, IOException, SQLException {
-		return requestLogic.updateByRequestId(requestId, request);
-	}
-
+	
 	public List<Route> displayAllRoutes() throws ClassNotFoundException, IOException, SQLException {
 		List<Route> routes = routeLogic.displayAll();
 		for (Route route : routes) {
@@ -106,7 +89,7 @@ public class CentralLogic {
 	}
 
 	public boolean createNewRequest(Employee employee) throws ClassNotFoundException, SQLException, IOException {
-		return requestLogic.createNewRequest(employee.getId(), employee.getVehicleId());
+		return requestLogic.createNewRequest(employee, employee.getRide());
 	}
 
 	private boolean insertRouteMappings(Route route) throws ClassNotFoundException, IOException, SQLException {

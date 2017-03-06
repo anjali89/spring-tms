@@ -8,8 +8,8 @@
 <title>Sign In</title>
 </head>
 <body>
-	<c:if test="${not empty requestScope.err }">
-		<p id="errorMessage"><c:out value="${requestScope.err}"></c:out></p>
+	<c:if test="${not empty requestScope.status }">
+		<p id="errorMessage"><c:out value="${requestScope.status}"></c:out></p>
 	</c:if>
 	<form action="${pageContext.request.contextPath}/SignIn" method="post">
 		Employee ID: <input type="number" name="id" />

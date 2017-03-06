@@ -3,57 +3,51 @@ package com.sapient.tms.model.bean;
 public class Request {
 	private static final String REQUEST_REJECTED = "REJECTED";
 	private static final String REQUEST_PENDING = "PENDING";
-
-	int id;
-	int employeeId;
-	String vehicleId;
+	private static final String REQUEST_ACCEPTED = "ACCEPTED";
+	
+	Employee employee;
+	Ride ride;
 	String status;
 
-	public Request(int id, int empid, String vehicleId, String status) {
-		this.id = id;
-		this.employeeId = empid;
-		this.vehicleId = vehicleId;
+	public Request(Employee employee, Ride ride, String status) {
+		this.employee = employee;
+		this.ride = ride;
 		this.status = status;
 	}
 
-	public int getId() {
-		return id;
+	public Employee getEmployee() {
+		return employee;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setEmployeeId(Employee employee) {
+		this.employee = employee;
 	}
 
-	public int getEmployeeId() {
-		return employeeId;
+	public Ride getRide() {
+		return ride;
 	}
 
-	public void setEmployeeId(int employeeId) {
-		this.employeeId = employeeId;
+	public void setVehicle(Ride ride) {
+		this.ride = ride;
 	}
-
-	public String getRideId() {
-		return vehicleId;
-	}
-
-	public void setRideId(String vehicleId) {
-		this.vehicleId = vehicleId;
-	}
-
+	
 	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	private void setStatus(String status) {
 		this.status = status;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + employeeId;
-		result = prime * result + id;
+		result = prime * result + ((employee == null) ? 0 : employee.hashCode());
 		return result;
 	}
 
@@ -66,17 +60,17 @@ public class Request {
 		if (getClass() != obj.getClass())
 			return false;
 		Request other = (Request) obj;
-		if (employeeId != other.employeeId)
-			return false;
-		if (id != other.id)
+		if (employee == null) {
+			if (other.employee != null)
+				return false;
+		} else if (!employee.equals(other.employee))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Request: \nrequestid=" + id + "\tempid=" + employeeId + "\trideid=" + vehicleId + "\tstatus=" + status
-				+ "\n";
+		return "Request [employee=" + employee + ", vehicle=" + ride + ", status=" + status + "]";
 	}
 
 	public void reject() {
@@ -86,6 +80,10 @@ public class Request {
 	public void initiate() {
 		this.setStatus(REQUEST_PENDING);
 	}
+	
+	public void accept() {
+		this.setStatus(REQUEST_ACCEPTED);
+	}
 
 	public boolean isPending() {
 		return this.status.equals(REQUEST_PENDING);
@@ -93,6 +91,10 @@ public class Request {
 
 	public boolean isRejected() {
 		return this.status.equals(REQUEST_REJECTED);
+	}
+	
+	public boolean isAccepted() {
+		return this.status.equals(REQUEST_ACCEPTED);
 	}
 
 }

@@ -5,15 +5,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Admin Home</title>
+<title>Result</title>
 </head>
 <body>
-	<ul>
-		<li><a href="${pageContext.request.contextPath}/ViewRequests">View Requests</a></li>
-		<li><a href="${pageContext.request.contextPath}/SignOut">Sign Out</a></li>
-	</ul>
-	<c:if test="${not empty requestScope.status }">
-		<p id="status">${requestScope.status }</p>
+	<c:if test="${not empty requestScope.err}">
+		<c:out value="${requestScope.err}"></c:out>
 	</c:if>
+	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
 </body>
 </html>

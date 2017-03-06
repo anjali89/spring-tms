@@ -61,7 +61,7 @@ public class SignInServlet extends HttpServlet {
 					if(tempRequest.isRejected()) {
 						request.setAttribute("err", "Your request has been rejected");
 						request.getRequestDispatcher("./accounts/SignInForm.jsp").forward(request, response);
-						centralLogic.deleteRequestByRequestId(tempRequest.getId());
+						centralLogic.deleteRequestByEmployeeId(tempRequest.getEmployee().getId());
 					}
 					//Request is still pending
 					else if(tempRequest.isPending()) {
@@ -72,7 +72,7 @@ public class SignInServlet extends HttpServlet {
 					else {
 						request.setAttribute("status", "Your request has been accepted");
 						request.getRequestDispatcher("./accounts/HomeView.jsp").forward(request, response);
-						centralLogic.deleteRequestByRequestId(tempRequest.getId());
+						centralLogic.deleteRequestByEmployeeId(tempRequest.getEmployee().getId());
 						HttpSession session = request.getSession();
 						session.setAttribute("user", employee);
 						if(!employee.isAdmin()) {
