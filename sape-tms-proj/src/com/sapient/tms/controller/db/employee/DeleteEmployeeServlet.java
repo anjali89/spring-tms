@@ -45,7 +45,7 @@ public class DeleteEmployeeServlet extends HttpServlet {
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./DeleteEmployeeFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/Employee/DeleteEmployeeFailed.jsp").forward(request, response);
 		}
 	}
 

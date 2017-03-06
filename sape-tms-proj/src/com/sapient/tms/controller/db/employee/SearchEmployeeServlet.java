@@ -51,7 +51,7 @@ public class SearchEmployeeServlet extends HttpServlet {
 
 		catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./SearchEmployeeFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/employee/SearchEmployeeFailed.jsp").forward(request, response);
 		}
 	}
 

@@ -47,7 +47,7 @@ public class DisplayAllEmployeesServlet extends HttpServlet {
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./DisplayAllEmployeesFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/employee/DisplayAllEmployeesFailed.jsp").forward(request, response);
 		}
 	}
 
