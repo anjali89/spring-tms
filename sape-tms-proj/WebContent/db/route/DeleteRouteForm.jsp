@@ -8,7 +8,7 @@
 </head>
 <body>
 <h3>Delete Route</h3>
-	<form action="${pageContext.request.contextPath}/DeleteRoute">
+	<form action="${pageContext.request.contextPath}/DeleteRoute" method="post">
 		ID: <input type="number" name="id" required /><br>
 		<input type="submit" value="Submit" />
 	</form>
