@@ -35,9 +35,9 @@ public class RequestLogic {
 		return requestIdString.matches("\\d+");
 	}
 
-	public boolean createNewRequest(Employee employee, Ride ride)
+	public boolean createNewRequest(Employee employee)
 			throws ClassNotFoundException, SQLException, IOException {
-		Request request = new Request(employee, ride, null);
+		Request request = new Request(employee, null);
 		request.initiate();
 		return requestDao.insert(request);
 	}

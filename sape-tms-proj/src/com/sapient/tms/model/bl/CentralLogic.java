@@ -39,7 +39,11 @@ public class CentralLogic {
 	}
 
 	public Employee searchEmployee(int employeeId) throws ClassNotFoundException, IOException, SQLException {
-		return employeeLogic.search(employeeId);
+		Employee employee = employeeLogic.search(employeeId);
+		Ride ride = employee.getRide();
+		ride = searchRideByVehicleId(ride.getVehicle().getId());
+		employee.setRide(ride);
+		return employee;
 	}
 
 	public boolean insertEmployee(Employee employee) throws ClassNotFoundException, IOException, SQLException {
@@ -47,7 +51,12 @@ public class CentralLogic {
 	}
 
 	public List<Request> displayAllRequests() throws ClassNotFoundException, IOException, SQLException {
-		return requestLogic.displayAll();
+		List<Request> requests = requestLogic.displayAll();
+		for(int i = 0; i < requests.size(); i++) {
+			Request request = requests.get(i);
+			requests.set(i, searchRequestByEmployeeId(request.getEmployee().getId()));
+		}
+		return requests;
 	}
 
 //public List<Employee> viewAllRideEmployees(int rideId) throws ClassNotFoundException, IOException, SQLException {
@@ -89,7 +98,7 @@ public class CentralLogic {
 	}
 
 	public boolean createNewRequest(Employee employee) throws ClassNotFoundException, SQLException, IOException {
-		return requestLogic.createNewRequest(employee, employee.getRide());
+		return requestLogic.createNewRequest(employee);
 	}
 
 	private boolean insertRouteMappings(Route route) throws ClassNotFoundException, IOException, SQLException {
@@ -116,7 +125,9 @@ public class CentralLogic {
 	}
 
 	public Request searchRequestByEmployeeId(int employeeId) throws ClassNotFoundException, IOException, SQLException {
-		return requestLogic.searchByEmployeeId(employeeId);
+		Request request = requestLogic.searchByEmployeeId(employeeId);
+		request.setEmployee(searchEmployee(request.getEmployee().getId()));
+		return request;
 	}
 
 	public boolean deleteRouteMappings(Route route) throws ClassNotFoundException, IOException, SQLException {
@@ -244,10 +255,27 @@ public class CentralLogic {
 		return employeeLogic.isAnyEmployeeAssignedToRide(rideId);
 	}
 
-	//public List<Employee> displayAllEmployeesByRide(int rideId)
-	//		throws IOException, ClassNotFoundException, SQLException {
-	//	return employeeLogic.displayAllByRide(rideId);
-	//}
+	public List<Employee> displayAllEmployeesByRide(int rideId)
+			throws IOException, ClassNotFoundException, SQLException {
+		List<Employee> employees = employeeLogic.displayAllByRide(rideId);
+		for(int i = 0; i < employees.size(); i++) {
+			Employee oldEmployee = employees.get(i);
+			Employee newEmployee = employeeLogic.search(oldEmployee.getId());
+			employees.set(i, newEmployee);
+		}
+		return employees;
+	}
+	
+	public List<Employee> displayAllEmployees()
+			throws IOException, ClassNotFoundException, SQLException {
+		List<Employee> employees = employeeLogic.displayAll();
+		for(int i = 0; i < employees.size(); i++) {
+			Employee oldEmployee = employees.get(i);
+			Employee newEmployee = employeeLogic.search(oldEmployee.getId());
+			employees.set(i, newEmployee);
+		}
+		return employees;
+	}
 
 	public boolean deleteRequestByEmployeeId(int employeeId) throws IOException, ClassNotFoundException, SQLException {
 		return requestLogic.deleteByEmployeeId(employeeId);

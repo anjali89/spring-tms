@@ -24,7 +24,6 @@ public class EmployeeLogic {
 	}
 
 	public boolean update(int id, Employee loggedEmployee) throws ClassNotFoundException, IOException, SQLException {
-
 		return employeeDao.update(id, loggedEmployee);
 	}
 
@@ -38,8 +37,10 @@ public class EmployeeLogic {
 
 	public List<Employee> displayAll() throws IOException, ClassNotFoundException, SQLException {
 		return employeeDao.displayAll();
-		
-	
+	}
+
+	public List<Employee> displayAllByRide(int rideId) throws ClassNotFoundException, SQLException {
+		return employeeDao.displayAllByRide(rideId);
 	}
 
 }

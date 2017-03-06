@@ -5,30 +5,16 @@ public class Request {
 	private static final String REQUEST_PENDING = "PENDING";
 	private static final String REQUEST_ACCEPTED = "ACCEPTED";
 	
-	Employee employee;
-	Ride ride;
-	String status;
+	private Employee employee;
+	private String status;
 
-	public Request(Employee employee, Ride ride, String status) {
+	public Request(Employee employee, String status) {
 		this.employee = employee;
-		this.ride = ride;
 		this.status = status;
 	}
 
 	public Employee getEmployee() {
 		return employee;
-	}
-
-	public void setEmployeeId(Employee employee) {
-		this.employee = employee;
-	}
-
-	public Ride getRide() {
-		return ride;
-	}
-
-	public void setVehicle(Ride ride) {
-		this.ride = ride;
 	}
 	
 	public String getStatus() {
@@ -70,7 +56,7 @@ public class Request {
 
 	@Override
 	public String toString() {
-		return "Request [employee=" + employee + ", vehicle=" + ride + ", status=" + status + "]";
+		return "Request [employee=" + employee + ", status=" + status + "]";
 	}
 
 	public void reject() {

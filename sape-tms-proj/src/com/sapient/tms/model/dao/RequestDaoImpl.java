@@ -15,7 +15,7 @@ import com.sapient.tms.model.bean.Vehicle;
 import com.sapient.tms.helper.JDBCConnection;
 
 public class RequestDaoImpl implements RequestDao {
-	private static final String INSERT_QUERY = "INSERT INTO request(employee_id, vehicle_id, status) VALUES(?, ?, ?)";
+	private static final String INSERT_QUERY = "INSERT INTO request(employee_id, status) VALUES(?, ?)";
 	private static final String SELECT_ALL_QUERY = "SELECT * FROM request";
 	private static final String SELECT_QUERY_BY_EMPLOYEE = "SELECT * FROM request WHERE employee_id = ?";
 	private static final String DELETE_QUERY_BY_EMPLOYEE = "DELETE FROM request WHERE employee_id = ?";
@@ -27,8 +27,7 @@ public class RequestDaoImpl implements RequestDao {
 		try (Connection connection = JDBCConnection.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY);) {
 			preparedStatement.setInt(1, request.getEmployee().getId());
-			preparedStatement.setString(2, request.getRide().getVehicle().getId());
-			preparedStatement.setString(3, request.getStatus());
+			preparedStatement.setString(2, request.getStatus());
 			numAffectedRows = preparedStatement.executeUpdate();
 			return numAffectedRows > 0;
 		}
@@ -41,12 +40,9 @@ public class RequestDaoImpl implements RequestDao {
 			preparedStatement.setInt(1, employeeId);
 			ResultSet rs = preparedStatement.executeQuery();
 			if (rs.next()) {
-				String vehicleId = rs.getString("vehicle_id");
 				String status = rs.getString("status");
 				Employee tempEmployee = new Employee(employeeId, null, null, null, false);
-				Vehicle tempVehicle = new Vehicle(vehicleId, null, null, 0);
-				Ride tempRide = new Ride(tempVehicle, null, null, null, 0);
-				request = new Request(tempEmployee, tempRide, status);
+				request = new Request(tempEmployee, status);
 			}
 			rs.close();
 			return request;
@@ -69,12 +65,9 @@ public class RequestDaoImpl implements RequestDao {
 			ResultSet rs = preparedStatement.executeQuery();
 			while (rs.next()) {
 				int employeeId = rs.getInt("employee_id");
-				String vehicleId = rs.getString("vehicle_id");
 				String status = rs.getString("status");
 				Employee tempEmployee = new Employee(employeeId, null, null, null, false);
-				Vehicle tempVehicle = new Vehicle(vehicleId, null, null, 0);
-				Ride tempRide = new Ride(tempVehicle, null, null, null, 0);
-				Request request = new Request(tempEmployee, tempRide, status);
+				Request request = new Request(tempEmployee, status);
 				requestList.add(request);
 			}
 			rs.close();

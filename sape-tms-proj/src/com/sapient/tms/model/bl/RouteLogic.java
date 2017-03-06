@@ -14,7 +14,6 @@ public class RouteLogic {
 
 	public RouteLogic() {
 		this.routeDao = new RouteDaoImpl();
-
 	}
 
 	public Route search(int routeId) throws ClassNotFoundException, IOException, SQLException {
@@ -22,16 +21,15 @@ public class RouteLogic {
 	}
 
 	public boolean update(int routeId, Route route) throws ClassNotFoundException, IOException, SQLException {
-
 		return routeDao.update(routeId, route);
 	}
 
-	public boolean delete(int employeeId) throws IOException, ClassNotFoundException, SQLException {
-		return routeDao.delete(employeeId);
+	public boolean delete(int id) throws IOException, ClassNotFoundException, SQLException {
+		return routeDao.delete(id);
 	}
 
-	public boolean insert(Route employee) throws IOException, ClassNotFoundException, SQLException {
-		return routeDao.insert(employee);
+	public boolean insert(Route route) throws IOException, ClassNotFoundException, SQLException {
+		return routeDao.insert(route);
 	}
 
 	public List<Route> displayAll() throws IOException, ClassNotFoundException, SQLException {

@@ -57,7 +57,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				boolean isEmployeeAdmin = rs.getString("is_admin").equals("Y") ? true : false;
 				Vehicle tempVehicle = new Vehicle(employeeVehicleId, null, null, 0);
 				Ride employeeRide = new Ride(tempVehicle, null, null, null, 0);
-				employee = new Employee(employeeId, employeePassword, employeeName, employeeVehicle, isEmployeeAdmin);
+				employee = new Employee(employeeId, employeePassword, employeeName, employeeRide, isEmployeeAdmin);
 				employeeList.add(employee);
 			}
 			rs.close();
@@ -165,8 +165,9 @@ public class EmployeeDaoImpl implements EmployeeDao {
 				String employeeName = rs.getString("name");
 				String employeeVehicleId = rs.getString("vehicle_id");
 				boolean isEmployeeAdmin = rs.getString("is_admin").equals("Y") ? true : false;
-				Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeVehicleId,
-						isEmployeeAdmin);
+				Vehicle employeeVehicle = new Vehicle(employeeVehicleId, null, null, 0);
+				Ride employeeRide = new Ride(employeeVehicle, null, null, null, 0);
+				Employee employee = new Employee(employeeId, employeePassword, employeeName, employeeRide, isEmployeeAdmin);
 				employeeList.add(employee);
 			}
 			rs.close();
