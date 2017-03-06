@@ -38,14 +38,14 @@ public class DeleteEmployeeServlet extends HttpServlet {
 			int employeeId = Integer.parseInt(request.getParameter("id"));
 			boolean success = employeeLogic.delete(employeeId);
 			if (success) {
-				request.getRequestDispatcher("./db/Employee/DeleteEmployeeSuccessful.jsp").forward(request, response);
+				request.getRequestDispatcher("./db/employee/DeleteEmployeeSuccessful.jsp").forward(request, response);
 			} else {
 				request.setAttribute("err", "Entry Not Found");
-				request.getRequestDispatcher("./db/Employee/DeleteEmployeeFailed.jsp").forward(request, response);
+				request.getRequestDispatcher("./db/employee/DeleteEmployeeFailed.jsp").forward(request, response);
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./db/Employee/DeleteEmployeeFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/employee/DeleteEmployeeFailed.jsp").forward(request, response);
 		}
 	}
 
