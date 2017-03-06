@@ -49,7 +49,7 @@ public class DeleteRouteServlet extends HttpServlet {
 				}
 				} else{
 					request.setAttribute("err", "Operation failed");
-			request.sendRedirect("./db/route/DeleteRouteFailed.jsp").forward(request, response);}
+			request.getRequestDispatcher("./db/route/DeleteRouteFailed.jsp").forward(request, response);}
 		} catch (ClassNotFoundException|SQLException e) {
 			request.setAttribute("err", e.toString());
 			request.getRequestDispatcher("./DeleteRouteFailed.jsp").forward(request, response);

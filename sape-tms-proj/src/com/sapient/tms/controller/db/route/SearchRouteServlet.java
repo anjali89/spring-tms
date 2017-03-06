@@ -44,7 +44,7 @@ public class SearchRouteServlet extends HttpServlet {
 				request.getRequestDispatcher("./db/route/SearchRouteFailed").forward(request, response);;
 				
 			}
-				response.sendRedirect("./db/route/SearchRouteFailed").forward(request, response);;
+				request.getRequestDispatcher("./db/route/SearchRouteFailed").forward(request, response);;
 		} catch (Exception e) {
 			request.setAttribute("err", e.toString());
 			request.getRequestDispatcher("./SearchRouteFailed.jsp").forward(request, response);
