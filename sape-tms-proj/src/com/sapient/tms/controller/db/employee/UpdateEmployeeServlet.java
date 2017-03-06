@@ -52,7 +52,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
 		}
 		catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./UpdateEmployeeFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/employee/UpdateEmployeeFailed.jsp").forward(request, response);
 		}
 	}
 
