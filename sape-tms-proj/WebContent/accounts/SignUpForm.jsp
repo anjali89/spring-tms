@@ -9,8 +9,8 @@
 </head>
 <body>
 	<% request.setAttribute("rides", new CentralLogic().displayAllAvailableRides()); %>
-	<c:if test="${not empty requestScope.err }">
-		<p id="errorMessage"><c:out value="${requestScope.err}"></c:out></p>
+	<c:if test="${not empty requestScope.status }">
+		<p id="errorMessage"><c:out value="${requestScope.status}"></c:out></p>
 	</c:if>
 	<h1>Enter details</h1>
 	<form action="${pageContext.request.contextPath}/SignUp" method="post">

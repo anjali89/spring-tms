@@ -56,8 +56,32 @@ public class SignInServlet extends HttpServlet {
 			else {
 				Employee employee = authenticationResult.getKey();
 				Request tempRequest = centralLogic.searchRequestByEmployeeId(employee.getId());
-				if(tempRequest != null) { 
-					request.setAttribute("status", "Your request is pending.");
+				if(tempRequest != null) {
+					//Request is still pending
+					if(tempRequest.isRejected()) {
+						request.setAttribute("err", "Your request has been rejected");
+						request.getRequestDispatcher("./accounts/SignInForm.jsp").forward(request, response);
+						centralLogic.deleteRequestByRequestId(tempRequest.getId());
+					}
+					//Request is still pending
+					else if(tempRequest.isPending()) {
+						request.setAttribute("status", "Your request is still pending");
+						request.getRequestDispatcher("./accounts/HomeView.jsp").forward(request, response);
+					}
+					//Request has been accepted
+					else {
+						request.setAttribute("status", "Your request has been accepted");
+						request.getRequestDispatcher("./accounts/HomeView.jsp").forward(request, response);
+						centralLogic.deleteRequestByRequestId(tempRequest.getId());
+						HttpSession session = request.getSession();
+						session.setAttribute("user", employee);
+						if(!employee.isAdmin()) {
+							response.sendRedirect("./EmployeeHomeView.jsp");
+						}
+						else {
+							response.sendRedirect("./AdminHomeView.jsp");
+						}
+					}
 					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}
 				else {
