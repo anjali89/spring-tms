@@ -8,17 +8,17 @@
 </head>
 <body>
 	<h3>Result</h3>
-	<table>
+	<table border="2" cellpadding="2">
 		<tr>
 			<th>ID</th>
 			<td>${requestScope.employee.getId() }</td>
 		</tr>
 		<tr>
-			<th>Model Name</th>
-			<td>${requestScope.vehicle.getModelName() }</td>
+			<th>Name</th>
+			<td>${requestScope.employee.getName() }</td>
 		</tr>
 		<tr>
-			<th>Brand Name</th>
+			<th>Vehicle Id</th>
 			<td>${requestScope.employee.getVehicleId() }</td>
 		</tr>
 	</table>
