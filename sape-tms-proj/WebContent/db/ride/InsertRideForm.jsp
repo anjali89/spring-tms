@@ -4,20 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Insert Ride</title>
 </head>
 <body>
 
-	<h1>Insert Ride</h1>
-	<form action="${pageContext.request.contextPath}/InsertVehicle"
+	<h1>Enter Ride Details</h1>
+	<form action="${pageContext.request.contextPath}/InsertRide"
 		method="post">
-		Vehicle ID: <input type="text" name="vehicleId" required /><br> 
-		Route ID: <input type="text" name="routeId" required /><br>
-		PickUp Time: <input	type="text" name="pickupTime" required /><br> 
-		Drop Time: <input type="number" name="dropTime" required /><br> 
+		Vehicle ID: <input type="text" name="vehicleId" required /><br>
+		Route ID: <input type="number" name="routeId" required /><br>
+		PickUp Time: <input type="text" name="pickupTime" required /><br>
+		Drop Time: <input type="text" name="dropTime" required /><br>
 		Seats Allocated: <input type="number" name="seatsAllocated" required /><br>
-		<input
-			type="submit" value="Submit" />
+		<input type="submit" value="Submit" />
 	</form>
 </body>
 </html>

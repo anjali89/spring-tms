@@ -9,6 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sapient.tms.helper.RideData;
+import com.sapient.tms.model.bean.Ride;
+import com.sapient.tms.model.bean.Vehicle;
+import com.sapient.tms.model.bl.CentralLogic;
 import com.sapient.tms.model.bl.RideLogic;
 
 /**
@@ -16,14 +20,16 @@ import com.sapient.tms.model.bl.RideLogic;
  */
 public class InsertRideServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RideLogic rideLogic;
+	private CentralLogic rideLogic;
+	private RideData rideData;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public InsertRideServlet() {
         super();
-        rideLogic = new RideLogic(); 
+        rideLogic = new CentralLogic(); 
+        rideData= new RideData();
     }
 
 	/**
@@ -32,18 +38,20 @@ public class InsertRideServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		try {
 			PrintWriter pw = response.getWriter();
-			String vehicleId = request.getParameter("vehicleId");
-			boolean success = rideLogic.deleteByVehicleId(vehicleId);
-			if (success) {
-				request.getRequestDispatcher("./db/ride/DeleteRideSuccessful.jsp").forward(request, response);
+			boolean check = false;
+			rideData.createRide(request);
+			Ride ride = rideData.getRide();
+			check = rideLogic.insertRide(ride);
+			if (check) {
+				request.getRequestDispatcher("./db/ride/InsertRideSuccessful.jsp").forward(request, response);
 			} else {
-				request.setAttribute("err", "Entry Not Found");
-				request.getRequestDispatcher("./db/ride/DeleteRideFailed.jsp").forward(request, response);
+				request.setAttribute("err", "Operation Failed");
+				request.getRequestDispatcher("./db/ride/InsertRideFailed.jsp").forward(request, response);
 			}
 		}
 		catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./db/ride/DeleteRideFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/ride/InsertRideFailed.jsp").forward(request, response);
 		}
 	}
 

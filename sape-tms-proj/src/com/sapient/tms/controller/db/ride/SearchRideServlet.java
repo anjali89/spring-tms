@@ -42,10 +42,10 @@ public class SearchRideServlet extends HttpServlet {
 			Ride ride = rideLogic.searchByVehicleId(vehicleId);
 			if (ride != null) {
 				request.setAttribute("ride", ride);
-				request.getRequestDispatcher("./WebContent/db/ride/SearchRideSuccessful.jsp").forward(request, response);
+				request.getRequestDispatcher("./db/ride/SearchRideSuccessful.jsp").forward(request, response);
 			} else {
 				request.setAttribute("err", "Entry Not Found");
-				request.getRequestDispatcher("./WebContent/db/ride/SearchRideFailed.jsp").forward(request, response);
+				request.getRequestDispatcher("./db/ride/SearchRideFailed.jsp").forward(request, response);
 			}
 		}
 
