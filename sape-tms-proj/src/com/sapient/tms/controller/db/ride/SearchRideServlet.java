@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sapient.tms.model.bean.Employee;
 import com.sapient.tms.model.bean.Ride;
+import com.sapient.tms.model.bl.CentralLogic;
 import com.sapient.tms.model.bl.EmployeeLogic;
 import com.sapient.tms.model.bl.RideLogic;
 
@@ -19,14 +20,14 @@ import com.sapient.tms.model.bl.RideLogic;
  */
 public class SearchRideServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RideLogic rideLogic;
+	private CentralLogic centralLogic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public SearchRideServlet() {
 		super();
-		rideLogic = new RideLogic();
+		centralLogic = new CentralLogic();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -39,7 +40,7 @@ public class SearchRideServlet extends HttpServlet {
 		try {
 			PrintWriter pw = response.getWriter();
 			String vehicleId = request.getParameter("id");
-			Ride ride = rideLogic.searchByVehicleId(vehicleId);
+			Ride ride = centralLogic.searchRideByVehicleId(vehicleId);
 			if (ride != null) {
 				request.setAttribute("ride", ride);
 				request.getRequestDispatcher("./db/ride/SearchRideSuccessful.jsp").forward(request, response);

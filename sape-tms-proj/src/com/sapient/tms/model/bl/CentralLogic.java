@@ -79,7 +79,9 @@ public class CentralLogic {
 
 	// test
 	public Route searchRoute(int routeId) throws ClassNotFoundException, IOException, SQLException {
-		return routeLogic.search(routeId);
+		Route route = routeLogic.search(routeId);
+		route.setDropList(searchRouteMappings(route));
+		return route;
 	}
 
 	// test
@@ -173,9 +175,9 @@ public class CentralLogic {
 	public Ride searchRideByVehicleId(String vehicleId) throws IOException, ClassNotFoundException, SQLException {
 		Ride ride = rideLogic.searchByVehicleId(vehicleId);
 		Route route = ride.getRoute();
-		route = routeLogic.search(route.getId());
+		route = searchRoute(route.getId());
 		Vehicle vehicle = ride.getVehicle();
-		vehicle = vehicleLogic.search(vehicle.getId());
+		vehicle = searchVehicle(vehicle.getId());
 		ride.setRoute(route);
 		ride.setVehicle(vehicle);
 		return ride;
