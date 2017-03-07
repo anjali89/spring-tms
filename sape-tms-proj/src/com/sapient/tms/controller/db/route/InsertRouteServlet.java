@@ -34,26 +34,22 @@ public class InsertRouteServlet extends HttpServlet {
         
         // TODO Auto-generated constructor stub
     }
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		Enumeration<String> drop = request.getParameterNames();
-		int Id=Integer.parseInt(drop.nextElement());
-		String name=drop.nextElement();
-		DropList dropList = new DropList();
-						while (drop.hasMoreElements()) {
-							int dropId=Integer.parseInt(drop.nextElement());
-							//System.out.println(dropId);
-						 try {
-							Drop dropElement=dropLogic.search(dropId);
-							dropIns = new Drop(dropId,dropElement.getName());
-							dropList.add(dropIns);
-						 
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+						try {
+							routeData.createRoute(request);
+						Route route = routeData.getRoute();
+							boolean check=centralLogic.insertRoute(route);
+							if(!check)
+							{
+								request.setAttribute("err", "Operation failed");
+								request.getRequestDispatcher("./db/route/InsertRouteFailed.jsp").forward(request, response);
+							}
+							else
+								request.getRequestDispatcher("./db/route/InsertRouteSuccessful.jsp").forward(request, response);
 						} catch (ClassNotFoundException | SQLException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
 						}
-								 
-						}
-						route = new Route(Id, name, dropList);
 						System.out.println(route);
 }
 
