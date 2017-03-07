@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Display Route successful</title>
+<title>Insert Route successful</title>
 </head>
 <body>
 	Operation Successful
