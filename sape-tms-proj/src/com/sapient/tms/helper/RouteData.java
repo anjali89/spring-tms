@@ -26,15 +26,17 @@ public class RouteData {
 
 	}
 
+
 	public void createRoute(HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException {
 		int id = Integer.parseInt(request.getParameter("id"));
-		String name = request.getParameter("name");
+		String name = request.getParameter("routeName");
 		String[] checkBox = request.getParameterValues("check");
 		DropList dropList = new DropList();
 		for (String str : checkBox) {
 			int dropId = Integer.parseInt(str);
 			Drop drop =centralLogic.searchDrop(dropId);
 			dropList.add(drop);
+			boolean checkMap=centralLogic.updateRouteMapping(dropId, id);
 		}
 		System.out.println(dropList);
 		route = new Route(id, name, dropList);

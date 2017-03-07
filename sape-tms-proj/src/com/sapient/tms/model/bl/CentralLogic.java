@@ -90,6 +90,10 @@ public class CentralLogic {
 		return routeLogic.update(routeId, route);
 	}
 	
+	public boolean updateRouteMapping(int dropId,int routeId) throws ClassNotFoundException, IOException, SQLException{
+		return routeMappingLogic.update(dropId, routeId);
+	}
+	
 	public List<Route> displayAllRoutes() throws ClassNotFoundException, IOException, SQLException {
 		List<Route> routes = routeLogic.displayAll();
 		for (Route route : routes) {
