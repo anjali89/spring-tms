@@ -1,49 +1,50 @@
-package com.sapient.tms.controller.db.ride;
+package com.sapient.tms.controller.db.request;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.sapient.tms.model.bl.RideLogic;
+
+import com.sapient.tms.model.bean.Request;
+import com.sapient.tms.model.bl.CentralLogic;
 
 /**
- * Servlet implementation class DeleteRideServlet
+ * Servlet implementation class ViewRequestsServlet
  */
-public class DeleteRideServlet extends HttpServlet {
+public class ViewRequestsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RideLogic rideLogic;
+	private CentralLogic centralLogic;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteRideServlet() {
+    public ViewRequestsServlet() {
         super();
-         rideLogic = new RideLogic(); 
+        centralLogic = new CentralLogic();
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
 		try {
-			PrintWriter pw = response.getWriter();
-			String vehicleId = request.getParameter("vehicleId");
-			boolean success = rideLogic.deleteByVehicleId(vehicleId);
-			if (success) {
-				request.getRequestDispatcher("./db/ride/DeleteRideSuccessful.jsp").forward(request, response);
+			List<Request> requests = centralLogic.displayAllRequests();
+			if (requests != null) {
+				request.setAttribute("requests", requests);
+				request.getRequestDispatcher("./db/tempRequest/ViewRequestsSuccessful.jsp").forward(request, response);
 			} else {
-				request.setAttribute("err", "Entry Not Found");
-				request.getRequestDispatcher("./db/ride/DeleteRideFailed.jsp").forward(request, response);
+				request.setAttribute("status", "Operation failed");
+				request.getRequestDispatcher("./db/tempRequest/ViewRequestsFailed.jsp").forward(request, response);
 			}
 		}
 		catch (ClassNotFoundException | SQLException e) {
-			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./db/ride/DeleteRideFailed.jsp").forward(request, response);
+			request.setAttribute("status", e.toString());
+			request.getRequestDispatcher("./DisplayAllRequestsFailed.jsp").forward(request, response);
 		}
 	}
 

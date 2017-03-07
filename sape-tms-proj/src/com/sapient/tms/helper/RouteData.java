@@ -14,37 +14,30 @@ public class RouteData {
 
 	private Route route;
 	private CentralLogic centralLogic;
+	private Drop drop;
+
+	private DropList dropList;
+	private int routeId, id, seats, capacity, dropId;
+	private String name, dropName;
 
 	public RouteData() {
 		centralLogic = new CentralLogic();
+		dropList = new DropList();
+
 	}
 
-	public void input(HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException {
-		String dropName, routeName;
-		int dropId, capacity, routeId;
-		Drop drop;
+	public void createRoute(HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException {
+		int id = Integer.parseInt(request.getParameter("id"));
+		String name = request.getParameter("name");
+		String[] checkBox = request.getParameterValues("check");
 		DropList dropList = new DropList();
-		Scanner scanner = new java.util.Scanner(System.in);
-		routeId = centralLogic.getMaxRouteId() + 1;
-		/*
-		 * System.out.println("Enter the route id"); routeId = scanner
-		 * .nextInt();
-		 */
-		System.out.println("Enter the route name: ");
-		routeName = scanner.nextLine();
-		System.out.println("Enter the route capacity:");
-		capacity = scanner.nextInt();
-		System.out.println("Enter the no. of drop points:");
-		int dropPointCount = scanner.nextInt();
-		for (int i = 0; i < dropPointCount; i++) {
-			System.out.println("Enter the drop place name " + i + " on the route ");
-			dropName = scanner.nextLine();
-			System.out.println("Enter the drop id");
-			dropId = scanner.nextInt();
-			drop = new Drop(dropId, dropName);
+		for (String str : checkBox) {
+			int dropId = Integer.parseInt(str);
+			Drop drop =centralLogic.searchDrop(dropId);
 			dropList.add(drop);
 		}
-		route = new Route(routeId, routeName, dropList);
+		System.out.println(dropList);
+		route = new Route(id, name, dropList);
 	}
 
 	public Route getRoute() {

@@ -31,7 +31,8 @@ public class SignOutServlet extends HttpServlet {
 		if (session != null) {
 			session.invalidate();
 		}
-		response.sendRedirect("./HomeView.jsp");
+		request.setAttribute("status", "Signed out successfully");
+		request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 	}
 
 	/**

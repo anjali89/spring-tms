@@ -45,7 +45,7 @@ public class SearchDropServlet extends HttpServlet {
 		}
 		catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("err", e.toString());
-			request.getRequestDispatcher("./SearchDropFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/drop/SearchDropFailed.jsp").forward(request, response);
 		}
 	}
 

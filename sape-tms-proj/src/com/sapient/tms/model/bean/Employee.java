@@ -4,15 +4,15 @@ public class Employee {
 	private int id;
 	private String password;
 	private String name;
-	private String vehicleId;
+	private Ride ride;
 	private boolean isAdmin;
 
-	public Employee(int id, String pass, String name, String employeeVehicleId, boolean isAdmin) {
+	public Employee(int id, String pass, String name, Ride ride, boolean isAdmin) {
 		super();
 		this.id = id;
 		this.password = pass;
 		this.name = name;
-		this.vehicleId = employeeVehicleId;
+		this.ride = ride;
 		this.isAdmin = isAdmin;
 	}
 
@@ -32,12 +32,12 @@ public class Employee {
 		this.name = name;
 	}
 
-	public String getVehicleId() {
-		return vehicleId;
+	public Ride getRide() {
+		return ride;
 	}
 
-	public void setVehicleId(String vehicleId) {
-		this.vehicleId = vehicleId;
+	public void setRide(Ride ride) {
+		this.ride = ride;
 	}
 
 	public boolean isAdmin() {
@@ -72,7 +72,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return "Employee [id=" + id + ", pass=" + password + ", name=" + name + ", rideId=" + vehicleId + ", isAdmin="
+		return "Employee [id=" + id + ", password=" + password + ", name=" + name + ", ride=" + ride + ", isAdmin="
 				+ isAdmin + "]";
 	}
 
