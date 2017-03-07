@@ -120,7 +120,7 @@ public class CentralLogic {
 		List<Integer> drops = routeMappingLogic.search(routeId);
 		DropList dropList = new DropList();
 		for (Integer dropId : drops) {
-			Drop drop = dropLogic.search(dropId);
+			Drop drop = searchDrop(dropId);
 			dropList.add(drop);
 		}
 		return dropList;
@@ -187,9 +187,9 @@ public class CentralLogic {
 		List<Ride> rides = rideLogic.searchByRouteId(routeId);
 		for (Ride ride : rides) {
 			Route route = ride.getRoute();
-			route = routeLogic.search(route.getId());
+			route = searchRoute(route.getId());
 			Vehicle vehicle = ride.getVehicle();
-			vehicle = vehicleLogic.search(vehicle.getId());
+			vehicle = searchVehicle(vehicle.getId());
 			ride.setRoute(route);
 			ride.setVehicle(vehicle);
 		}
@@ -201,9 +201,9 @@ public class CentralLogic {
 		List<Ride> rides = rideLogic.searchByPickupTime(pickupTime);
 		for (Ride ride : rides) {
 			Route route = ride.getRoute();
-			route = routeLogic.search(route.getId());
+			route = searchRoute(route.getId());
 			Vehicle vehicle = ride.getVehicle();
-			vehicle = vehicleLogic.search(vehicle.getId());
+			vehicle = searchVehicle(vehicle.getId());
 			ride.setRoute(route);
 			ride.setVehicle(vehicle);
 		}
@@ -215,9 +215,9 @@ public class CentralLogic {
 		List<Ride> rides = rideLogic.searchByDropTime(dropTime);
 		for (Ride ride : rides) {
 			Route route = ride.getRoute();
-			route = routeLogic.search(route.getId());
+			route = searchRoute(route.getId());
 			Vehicle vehicle = ride.getVehicle();
-			vehicle = vehicleLogic.search(vehicle.getId());
+			vehicle = searchVehicle(vehicle.getId());
 			ride.setRoute(route);
 			ride.setVehicle(vehicle);
 		}
@@ -228,9 +228,9 @@ public class CentralLogic {
 		List<Ride> rides = rideLogic.displayAll();
 		for (Ride ride : rides) {
 			Route route = ride.getRoute();
-			route = routeLogic.search(route.getId());
+			route = searchRoute(route.getId());
 			Vehicle vehicle = ride.getVehicle();
-			vehicle = vehicleLogic.search(vehicle.getId());
+			vehicle = searchVehicle(vehicle.getId());
 			ride.setRoute(route);
 			ride.setVehicle(vehicle);
 		}
@@ -262,7 +262,7 @@ public class CentralLogic {
 		List<Employee> employees = employeeLogic.displayAllByRide(rideId);
 		for(int i = 0; i < employees.size(); i++) {
 			Employee oldEmployee = employees.get(i);
-			Employee newEmployee = employeeLogic.search(oldEmployee.getId());
+			Employee newEmployee = searchEmployee(oldEmployee.getId());
 			employees.set(i, newEmployee);
 		}
 		return employees;
@@ -273,7 +273,7 @@ public class CentralLogic {
 		List<Employee> employees = employeeLogic.displayAll();
 		for(int i = 0; i < employees.size(); i++) {
 			Employee oldEmployee = employees.get(i);
-			Employee newEmployee = employeeLogic.search(oldEmployee.getId());
+			Employee newEmployee = searchEmployee(oldEmployee.getId());
 			employees.set(i, newEmployee);
 		}
 		return employees;
@@ -307,8 +307,8 @@ public class CentralLogic {
 	public List<Ride> displayAllAvailableRides() throws ClassNotFoundException, IOException, SQLException {
 		List<Ride> rides = new ArrayList<>();
 		for (Ride ride : rideLogic.displayAll()) {
-			ride.setVehicle(vehicleLogic.search(ride.getVehicle().getId()));
-			ride.setRoute(routeLogic.search(ride.getRoute().getId()));
+			ride.setVehicle(searchVehicle(ride.getVehicle().getId()));
+			ride.setRoute(searchRoute(ride.getRoute().getId()));
 			if (ride.getSeatsAllocated() < ride.getVehicle().getCapacity()) {
 				rides.add(ride);
 			}
