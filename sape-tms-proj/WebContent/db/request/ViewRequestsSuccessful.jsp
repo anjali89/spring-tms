@@ -13,34 +13,37 @@
 		request.setAttribute("centralLogic", new CentralLogic());
 	%>
 	<h3>Result</h3>
-	<table>
-		<tr>
-			<th>Employee ID</th>
-			<th>Employee Name</th>
-			<th>Requested Vehicle</th>
-			<th>Vehicle Seats Allocated / Capacity</th>
-			<th>Status</th>
-		</tr>
-		<tr>
-			<c:forEach var="tempRequest" items="${requestScope.requests}">
-				<tr>
-					<td>${tempRequest.getEmployee().getId() }</td>
-					<td>${tempRequest.getEmployee().getName() }</td>
-					<td>${tempRequest.getEmployee().getRide().getVehicle().getBrandName()}
-						${tempRequest.getEmployee().getRide().getVehicle().getModelName()}</td>
-					<td>${tempRequest.getEmployee().getRide().getSeatsAllocated()}/
-						${tempRequest.getEmployee().getRide().getVehicle().getCapacity()}</td>
-					<td>
-						<select>
-							<option selected="${tempRequest.isAccepted()?'selected':'' }">ACCPETED</option>
-							<option selected="${tempRequest.isRejected()?'selected':'' }">REJECTED</option>
-							<option selected="${tempRequest.isPending()?'selected':'' }">PENDING</option>
-						</select>
-					</td>
-				</tr>
-			</c:forEach>
-		</tr>
-	</table>
+	<form action="./UpdateRequests">
+		<table>
+			<tr>
+				<th>Employee ID</th>
+				<th>Employee Name</th>
+				<th>Requested Vehicle</th>
+				<th>Vehicle Seats Allocated / Capacity</th>
+				<th>Status</th>
+			</tr>
+			<tr>
+				<c:forEach var="tempRequest" items="${requestScope.requests}">
+					<tr>
+						<td>${tempRequest.getEmployee().getId() }</td>
+						<td>${tempRequest.getEmployee().getName() }</td>
+						<td>${tempRequest.getEmployee().getRide().getVehicle().getBrandName()}
+							${tempRequest.getEmployee().getRide().getVehicle().getModelName()}</td>
+						<td>${tempRequest.getEmployee().getRide().getSeatsAllocated()}/
+							${tempRequest.getEmployee().getRide().getVehicle().getCapacity()}</td>
+						<td>
+							<select name="status">
+								<option selected="${tempRequest.isAccepted()?'selected':'' }">ACCPETED</option>
+								<option selected="${tempRequest.isRejected()?'selected':'' }">REJECTED</option>
+								<option selected="${tempRequest.isPending()?'selected':'' }">PENDING</option>
+							</select>
+						</td>
+					</tr>
+				</c:forEach>
+			</tr>
+		</table>
+		<input type="submit" value="Submit" />
+	</form>
 	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
 </body>
 </html>
