@@ -9,7 +9,7 @@
 </head>
 <body>
 	<h3>Result</h3>
-	<table>
+	<table border="2">
 		<tr>
 			<th>ID</th>
 			<th>Employee Name</th>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+	pageEncoding="ISO-8859-1"%>
+	 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,21 +8,27 @@
 <title>Display All Rides Successful</title>
 </head>
 <body>
-<table>
+	<table border="2">
+
 		<tr>
 			<th>Route Id</th>
+			<th>Vehicle Id</th>
 			<th>Pickup Time</th>
 			<th>Drop Time</th>
-			<th>Vehicle Id</th>
-			
+			<th>Seats Allocated</th>
+
+
 		</tr>
 		<tr>
-			<c:forEach var="item" items="${requestScope.vehicles}">
+			<c:forEach var="ride" items="${requestScope.rides}">
 				<tr>
-					<td>${item.getId() }</td>
-					<td>${item.getName() }</td>
-					<td>${item.getVehicleId() }</td>
-			
+					<td>${ride.getVehicle().getId() }</td>
+					<td>${ride.getRoute().getId()}</td>
+					<td>${ride.getPickupTime() }</td>
+					<td>${ride.getDropTime() }</td>
+					<td>${ride.getSeatsAllocated() }</td>
+
+
 				</tr>
 			</c:forEach>
 		</tr>

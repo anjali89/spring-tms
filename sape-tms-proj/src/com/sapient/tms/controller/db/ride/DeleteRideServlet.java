@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sapient.tms.model.bl.CentralLogic;
 import com.sapient.tms.model.bl.RideLogic;
 
 /**
@@ -15,14 +17,14 @@ import com.sapient.tms.model.bl.RideLogic;
  */
 public class DeleteRideServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RideLogic rideLogic;
+	private CentralLogic rideLogic;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
     public DeleteRideServlet() {
         super();
-         rideLogic = new RideLogic(); 
+         rideLogic = new CentralLogic(); 
     }
 
 	/**
@@ -33,7 +35,7 @@ public class DeleteRideServlet extends HttpServlet {
 		try {
 			PrintWriter pw = response.getWriter();
 			String vehicleId = request.getParameter("vehicleId");
-			boolean success = rideLogic.deleteByVehicleId(vehicleId);
+			boolean success = rideLogic.deleteRideByVehicleId(vehicleId);
 			if (success) {
 				request.getRequestDispatcher("./db/ride/DeleteRideSuccessful.jsp").forward(request, response);
 			} else {

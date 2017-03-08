@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sapient.tms.model.bean.Employee;
 import com.sapient.tms.model.bean.Ride;
+import com.sapient.tms.model.bl.CentralLogic;
 import com.sapient.tms.model.bl.EmployeeLogic;
 import com.sapient.tms.model.bl.RideLogic;
 
@@ -19,14 +20,14 @@ import com.sapient.tms.model.bl.RideLogic;
  */
 public class DisplayAllRidesServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RideLogic rideLogic;
+	private CentralLogic centralLogic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public DisplayAllRidesServlet() {
 		super();
-		rideLogic = new RideLogic();
+		centralLogic = new CentralLogic();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -37,7 +38,7 @@ public class DisplayAllRidesServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			List<Ride> rides = rideLogic.displayAll();
+			List<Ride> rides = centralLogic.displayAllRides();
 			if (rides != null) {
 				request.setAttribute("rides", rides);
 				request.getRequestDispatcher("./db/ride/DisplayAllRidesSuccessful.jsp").forward(request, response);
