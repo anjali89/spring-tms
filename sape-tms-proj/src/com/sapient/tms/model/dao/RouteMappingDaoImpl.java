@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import com.sapient.tms.helper.JDBCConnection;
+import com.sapient.tms.model.bean.Route;
 
 public class RouteMappingDaoImpl implements RouteMappingDao {
 
@@ -18,6 +19,7 @@ public class RouteMappingDaoImpl implements RouteMappingDao {
 	private static final String DELETE_QUERY_BY_DROP = "DELETE FROM ROUTEMAPPING WHERE DROP_POINT_ID = ?";
 	private static final String SELECT_QUERY = "SELECT * FROM ROUTEMAPPING WHERE ROUTE_ID = ?";
 	private static final String SELECT_ALL_QUERY = "SELECT * FROM ROUTEMAPPING";
+	private static final String UPDATE_QUERY = "UPDATE routemapping set drop_point_id=? where route_id=?";
 
 	@Override
 	public boolean insert(int routeId, int dropPointId) throws IOException, ClassNotFoundException, SQLException {
@@ -101,4 +103,17 @@ public class RouteMappingDaoImpl implements RouteMappingDao {
 		}
 	}
 
+	public boolean update(int dropId, int routeId) throws IOException, ClassNotFoundException, SQLException {
+		int updateCount;
+		try (Connection connection = JDBCConnection.getConnection()) {
+			PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
+			preparedStatement.setInt(1, dropId);
+			preparedStatement.setInt(2, routeId);
+			preparedStatement.execute();
+			updateCount = preparedStatement.getUpdateCount();
+			preparedStatement.close();
+			connection.close();
+			return updateCount > 0;
+		}
+	}
 }

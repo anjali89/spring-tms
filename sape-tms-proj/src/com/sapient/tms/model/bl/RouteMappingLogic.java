@@ -31,4 +31,7 @@ public class RouteMappingLogic {
 	public boolean deleteByDrop(int dropId) throws ClassNotFoundException, SQLException {
 		return routeMappingDao.deleteByDrop(dropId);
 	}
+	public boolean update(int dropId, int routeId) throws IOException, ClassNotFoundException, SQLException{
+		return routeMappingDao.update(dropId, routeId);
+	}
 }

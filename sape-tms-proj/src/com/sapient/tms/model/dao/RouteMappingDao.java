@@ -15,4 +15,6 @@ public interface RouteMappingDao {
 	public HashMap<Integer, List<Integer>> displayAll() throws IOException, ClassNotFoundException, SQLException;
 
 	public boolean deleteByDrop(int dropId) throws SQLException, ClassNotFoundException;
+	
+	public boolean update(int dropId, int routeId) throws IOException, ClassNotFoundException, SQLException;
 }

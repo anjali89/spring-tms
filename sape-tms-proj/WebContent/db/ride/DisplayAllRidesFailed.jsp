@@ -4,10 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Display Route successful</title>
+<title>Insert title here</title>
 </head>
 <body>
-	Operation Successful
-	<a href="${pageContext.request.contextPath}/AdminHomeView.jsp">Go back</a>
+
 </body>
 </html>

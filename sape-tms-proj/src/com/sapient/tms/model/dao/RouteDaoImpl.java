@@ -61,7 +61,7 @@ public class RouteDaoImpl implements RouteDao {
 		try (Connection connection = JDBCConnection.getConnection()) {
 			PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
 			preparedStatement.setString(1, newEmployee.getName());
-			preparedStatement.setInt(4, newEmployee.getId());
+			preparedStatement.setInt(2, newEmployee.getId());
 			preparedStatement.execute();
 			updateCount = preparedStatement.getUpdateCount();
 			preparedStatement.close();
