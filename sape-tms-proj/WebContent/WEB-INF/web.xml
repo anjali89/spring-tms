@@ -299,4 +299,14 @@
     <servlet-name>ViewRequests</servlet-name>
     <url-pattern>/ViewRequests</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ChangeRide</display-name>
+    <servlet-name>ChangeRide</servlet-name>
+    <servlet-class>com.sapient.tms.controller.db.employee.ChangeRideServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ChangeRide</servlet-name>
+    <url-pattern>/ChangeRide</url-pattern>
+  </servlet-mapping>
 </web-app>

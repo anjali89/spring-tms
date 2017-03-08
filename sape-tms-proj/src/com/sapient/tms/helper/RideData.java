@@ -29,6 +29,10 @@ public class RideData {
 		Route route = centralLogic.searchRoute(routeId);
 		ride = new Ride(vehicle, route, pickupTime, dropTime, seatsAllocated);
 	}
+	
+	public void updateRide(HttpServletRequest request) throws ClassNotFoundException, IOException, SQLException{
+		
+	}
 
 	public Ride getRide() {
 		return ride;
