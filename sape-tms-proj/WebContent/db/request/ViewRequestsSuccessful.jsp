@@ -26,10 +26,10 @@
 				<tr>
 					<td>${tempRequest.getEmployee().getId() }</td>
 					<td>${tempRequest.getEmployee().getName() }</td>
-					<td>${tempRequest.getRide().getVehicle().getBrandName()}
-						${tempRequest.getRide().getVehicle()getVehicle().getModelName()}</td>
-					<td>${tempRequest.getRide().getSeatsAllocated()}/
-						${tempRequest.getRide().getVehicle().getCapacity()}</td>
+					<td>${tempRequest.getEmployee().getRide().getVehicle().getBrandName()}
+						${tempRequest.getEmployee().getRide().getVehicle().getModelName()}</td>
+					<td>${tempRequest.getEmployee().getRide().getSeatsAllocated()}/
+						${tempRequest.getEmployee().getRide().getVehicle().getCapacity()}</td>
 					<td>
 						<select>
 							<option selected="${tempRequest.isAccepted()?'selected':'' }">ACCPETED</option>

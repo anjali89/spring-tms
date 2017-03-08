@@ -323,7 +323,6 @@ public class CentralLogic {
 				rides.add(ride);
 			}
 		}
-		System.out.println(rideLogic.displayAll());
 		return rides;
 	}
 
