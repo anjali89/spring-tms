@@ -309,4 +309,14 @@
     <servlet-name>ChangeRide</servlet-name>
     <url-pattern>/ChangeRide</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateRequests</display-name>
+    <servlet-name>UpdateRequests</servlet-name>
+    <servlet-class>com.sapient.tms.controller.db.request.UpdateRequestsServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateRequests</servlet-name>
+    <url-pattern>/UpdateRequestsServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
