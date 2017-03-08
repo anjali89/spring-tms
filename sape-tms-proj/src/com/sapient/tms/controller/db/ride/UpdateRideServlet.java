@@ -22,14 +22,14 @@ import com.sapient.tms.model.bl.RideLogic;
  */
 public class UpdateRideServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private RideLogic rideLogic;
+	private CentralLogic rideLogic;
 	private RideData rideData;
 	//private CentralLogic rideLogic;
 
 	public UpdateRideServlet() {
 		super();
 		rideData = new RideData();
-		rideLogic = new RideLogic();
+		rideLogic = new CentralLogic();
 	//rideLogic=new CentralLogic();
 	}
 
@@ -45,7 +45,7 @@ public class UpdateRideServlet extends HttpServlet {
 			String vehicleId = request.getParameter("id");
 			rideData.createRide(request);
 			Ride newRide = rideData.getRide();
-			check = rideLogic.update(vehicleId, newRide);
+			check = rideLogic.updateRide(vehicleId, newRide);
 			if (check) {
 				request.getRequestDispatcher("./db/ride/UpdateRideSuccessful.jsp").forward(request, response);
 			} else {
