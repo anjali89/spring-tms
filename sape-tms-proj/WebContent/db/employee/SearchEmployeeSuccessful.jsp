@@ -19,7 +19,11 @@
 		</tr>
 		<tr>
 			<th>Vehicle Id</th>
-			<td>${requestScope.employee.getVehicleId() }</td>
+			<td>${requestScope.employee.getVehicle().getId() }</td>
+		</tr>
+		<tr>
+			<th>Vehicle</th>
+			<td>${requestScope.employee.getVehicle().getBrandName() } ${requestScope.employee.getVehicle().getModelName() }</td>
 		</tr>
 	</table>
 	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
