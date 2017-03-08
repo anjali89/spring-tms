@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    import="com.sapient.tms.model.bl.CentralLogic" pageEncoding="ISO-8859-1"%>
+	import="com.sapient.tms.model.bl.CentralLogic"
+	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,22 +9,34 @@
 <title>Result</title>
 </head>
 <body>
-	<% request.setAttribute("centralLogic", new CentralLogic()); %>
+	<%
+		request.setAttribute("centralLogic", new CentralLogic());
+	%>
 	<h3>Result</h3>
 	<table>
 		<tr>
 			<th>Employee ID</th>
 			<th>Employee Name</th>
 			<th>Requested Vehicle</th>
-			<th>Vehicle Seats Allocated / Capacity</th> 
+			<th>Vehicle Seats Allocated / Capacity</th>
+			<th>Status</th>
 		</tr>
 		<tr>
 			<c:forEach var="tempRequest" items="${requestScope.requests}">
 				<tr>
 					<td>${tempRequest.getEmployee().getId() }</td>
 					<td>${tempRequest.getEmployee().getName() }</td>
-					<td>{tempRequest.getRide().getVehicle().getBrandName()} ${tempRequest.getRide().getVehicle()getVehicle().getModelName()}</td>
-					<td>{centralLogic().getVehicle().getBrandName()} / ${tempRequest.getVehicle().getModelName()}</td>
+					<td>${tempRequest.getRide().getVehicle().getBrandName()}
+						${tempRequest.getRide().getVehicle()getVehicle().getModelName()}</td>
+					<td>${tempRequest.getRide().getSeatsAllocated()}/
+						${tempRequest.getRide().getVehicle().getCapacity()}</td>
+					<td>
+						<select>
+							<option selected="${tempRequest.isAccepted()?'selected':'' }">ACCPETED</option>
+							<option selected="${tempRequest.isRejected()?'selected':'' }">REJECTED</option>
+							<option selected="${tempRequest.isPending()?'selected':'' }">PENDING</option>
+						</select>
+					</td>
 				</tr>
 			</c:forEach>
 		</tr>
