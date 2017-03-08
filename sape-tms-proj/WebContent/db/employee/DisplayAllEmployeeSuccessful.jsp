@@ -14,15 +14,15 @@
 			<th>ID</th>
 			<th>Employee Name</th>
 			<th>Vehicle Id</th>
-
+			<th>Vehicle</th>
 		</tr>
 		<tr>
-			<c:forEach var="item" items="${requestScope.vehicles}">
+			<c:forEach var="employee" items="${requestScope.employees}">
 				<tr>
-					<td>${item.getId() }</td>
-					<td>${item.getName() }</td>
-					<td>${item.getVehicleId() }</td>
-
+					<td>${employee.getId() }</td>
+					<td>${employee.getName() }</td>
+					<td>${employee.getRide().getVehicle().getId() }</td>
+					<td>${employee.getRide().getVehicle().getBrandName() } ${employee.getRide().getVehicle().getModelName() }</td>
 				</tr>
 			</c:forEach>
 		</tr>

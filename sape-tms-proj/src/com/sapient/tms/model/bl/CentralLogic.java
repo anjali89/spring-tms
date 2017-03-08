@@ -40,9 +40,11 @@ public class CentralLogic {
 
 	public Employee searchEmployee(int employeeId) throws ClassNotFoundException, IOException, SQLException {
 		Employee employee = employeeLogic.search(employeeId);
-		Ride ride = employee.getRide();
-		ride = searchRideByVehicleId(ride.getVehicle().getId());
-		employee.setRide(ride);
+		if(employee != null) {
+			Ride ride = employee.getRide();
+			ride = searchRideByVehicleId(ride.getVehicle().getId());
+			employee.setRide(ride);
+		}
 		return employee;
 	}
 
@@ -180,12 +182,14 @@ public class CentralLogic {
 
 	public Ride searchRideByVehicleId(String vehicleId) throws IOException, ClassNotFoundException, SQLException {
 		Ride ride = rideLogic.searchByVehicleId(vehicleId);
-		Route route = ride.getRoute();
-		route = searchRoute(route.getId());
-		Vehicle vehicle = ride.getVehicle();
-		vehicle = searchVehicle(vehicle.getId());
-		ride.setRoute(route);
-		ride.setVehicle(vehicle);
+		if(ride != null) {
+			Route route = ride.getRoute();
+			route = searchRoute(route.getId());
+			Vehicle vehicle = ride.getVehicle();
+			vehicle = searchVehicle(vehicle.getId());
+			ride.setRoute(route);
+			ride.setVehicle(vehicle);
+		}
 		return ride;
 	}
 

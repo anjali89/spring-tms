@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	import="com.sapient.tms.model.bean.*"
 	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -19,11 +20,12 @@
 		</tr>
 		<tr>
 			<th>Vehicle Id</th>
-			<td>${requestScope.employee.getVehicle().getId() }</td>
+			<td>${requestScope.employee.getRide().getVehicle().getId() }</td>
 		</tr>
 		<tr>
 			<th>Vehicle</th>
-			<td>${requestScope.employee.getVehicle().getBrandName() } ${requestScope.employee.getVehicle().getModelName() }</td>
+			<%System.out.println(((Employee)request.getAttribute("employee")).getRide().getVehicle()); %>
+			<td>${requestScope.employee.getRide().getVehicle().getBrandName() } ${requestScope.employee.getRide().getVehicle().getModelName() }</td>
 		</tr>
 	</table>
 	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>

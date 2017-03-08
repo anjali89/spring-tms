@@ -9,21 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sapient.tms.model.bl.EmployeeLogic;
+import com.sapient.tms.model.bl.CentralLogic;
 
 /**
  * Servlet implementation class DeleteEmployeeServlet
  */
 public class DeleteEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private EmployeeLogic employeeLogic;
+	private CentralLogic centralLogic;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public DeleteEmployeeServlet() {
 		super();
-		employeeLogic = new EmployeeLogic();
+		centralLogic = new CentralLogic();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -36,7 +36,7 @@ public class DeleteEmployeeServlet extends HttpServlet {
 		try {
 			PrintWriter pw = response.getWriter();
 			int employeeId = Integer.parseInt(request.getParameter("id"));
-			boolean success = employeeLogic.delete(employeeId);
+			boolean success = centralLogic.deleteEmployee(employeeId);
 			if (success) {
 				request.getRequestDispatcher("./db/employee/DeleteEmployeeSuccessful.jsp").forward(request, response);
 			} else {

@@ -1,7 +1,6 @@
 package com.sapient.tms.controller.db.employee;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -10,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.sapient.tms.helper.EmployeeData;
 import com.sapient.tms.model.bean.Employee;
-import com.sapient.tms.model.bean.Vehicle;
-import com.sapient.tms.model.bl.EmployeeLogic;
+import com.sapient.tms.model.bl.CentralLogic;
 
 
 /**
@@ -19,7 +17,7 @@ import com.sapient.tms.model.bl.EmployeeLogic;
  */
 public class UpdateEmployeeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private EmployeeLogic employeeLogic;
+	private CentralLogic centralLogic;
     private EmployeeData employeeData;
        
     /**
@@ -28,7 +26,7 @@ public class UpdateEmployeeServlet extends HttpServlet {
     public UpdateEmployeeServlet() {
         super();
        employeeData=new EmployeeData();
-       employeeLogic=new EmployeeLogic();
+       centralLogic=new CentralLogic();
     }
 
 	/**
@@ -37,12 +35,11 @@ public class UpdateEmployeeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		try {
-			PrintWriter pw = response.getWriter();
 			boolean check = false;
 			int employeeId = Integer.parseInt(request.getParameter("id"));
 			employeeData.createEmployee(request);
 			Employee newEmployee = employeeData.getEmployee();
-			check = employeeLogic.update(employeeId, newEmployee);
+			check = centralLogic.updateEmployee(employeeId, newEmployee);
 			if (check) {
 				request.getRequestDispatcher("./db/employee/UpdateEmployeeSuccessful.jsp").forward(request, response);
 			} else {
