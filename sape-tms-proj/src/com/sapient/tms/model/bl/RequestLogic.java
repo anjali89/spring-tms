@@ -39,6 +39,7 @@ public class RequestLogic {
 			throws ClassNotFoundException, SQLException, IOException {
 		Request request = new Request(employee, null);
 		request.initiate();
+		System.out.println(request);
 		return requestDao.insert(request);
 	}
 

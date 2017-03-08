@@ -26,9 +26,13 @@ public class RequestDaoImpl implements RequestDao {
 		int numAffectedRows;
 		try (Connection connection = JDBCConnection.getConnection();
 				PreparedStatement preparedStatement = connection.prepareStatement(INSERT_QUERY);) {
+			System.out.println("inside insert requestdao");
 			preparedStatement.setInt(1, request.getEmployee().getId());
 			preparedStatement.setString(2, request.getStatus());
+			System.out.println(preparedStatement);
+			System.out.println(request.getEmployee().getId()+" "+request.getStatus());
 			numAffectedRows = preparedStatement.executeUpdate();
+			System.out.println(numAffectedRows);
 			return numAffectedRows > 0;
 		}
 	}

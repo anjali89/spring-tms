@@ -71,7 +71,6 @@ public class SignInServlet extends HttpServlet {
 					//Request has been accepted
 					else {
 						request.setAttribute("status", "Your request has been accepted");
-						request.getRequestDispatcher("./accounts/HomeView.jsp").forward(request, response);
 						centralLogic.deleteRequestByEmployeeId(tempRequest.getEmployee().getId());
 						HttpSession session = request.getSession();
 						session.setAttribute("user", employee);
@@ -82,7 +81,6 @@ public class SignInServlet extends HttpServlet {
 							response.sendRedirect("./AdminHomeView.jsp");
 						}
 					}
-					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}
 				else {
 					HttpSession session = request.getSession();

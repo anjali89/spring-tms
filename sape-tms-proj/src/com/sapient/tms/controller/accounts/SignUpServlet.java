@@ -51,7 +51,6 @@ public class SignUpServlet extends HttpServlet {
 					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}
 				else {
-					centralLogic.deleteRequestByEmployeeId(employee.getId());
 					request.setAttribute("status", "Your request is pending.");
 					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}

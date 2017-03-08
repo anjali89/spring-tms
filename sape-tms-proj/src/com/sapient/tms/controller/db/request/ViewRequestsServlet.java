@@ -25,7 +25,6 @@ public class ViewRequestsServlet extends HttpServlet {
     public ViewRequestsServlet() {
         super();
         centralLogic = new CentralLogic();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -36,15 +35,15 @@ public class ViewRequestsServlet extends HttpServlet {
 			List<Request> requests = centralLogic.displayAllRequests();
 			if (requests != null) {
 				request.setAttribute("requests", requests);
-				request.getRequestDispatcher("./db/tempRequest/ViewRequestsSuccessful.jsp").forward(request, response);
+				request.getRequestDispatcher("./db/request/ViewRequestsSuccessful.jsp").forward(request, response);
 			} else {
 				request.setAttribute("status", "Operation failed");
-				request.getRequestDispatcher("./db/tempRequest/ViewRequestsFailed.jsp").forward(request, response);
+				request.getRequestDispatcher("./db/request/ViewRequestsFailed.jsp").forward(request, response);
 			}
 		}
 		catch (ClassNotFoundException | SQLException e) {
 			request.setAttribute("status", e.toString());
-			request.getRequestDispatcher("./DisplayAllRequestsFailed.jsp").forward(request, response);
+			request.getRequestDispatcher("./db/request/ViewRequestsFailed.jsp").forward(request, response);
 		}
 	}
 

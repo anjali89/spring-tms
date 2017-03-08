@@ -22,7 +22,7 @@
 				<tr>
 					<td>${tempRequest.getEmployee().getId() }</td>
 					<td>${tempRequest.getEmployee().getName() }</td>
-					<td>{tempRequest.getVehicle().getBrandName()} ${tempRequest.getVehicle().getModelName()}</td>
+					<td>{tempRequest.getRide().getVehicle().getBrandName()} ${tempRequest.getRide().getVehicle()getVehicle().getModelName()}</td>
 					<td>{centralLogic().getVehicle().getBrandName()} / ${tempRequest.getVehicle().getModelName()}</td>
 				</tr>
 			</c:forEach>

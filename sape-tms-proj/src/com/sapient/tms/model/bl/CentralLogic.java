@@ -128,7 +128,9 @@ public class CentralLogic {
 
 	public Request searchRequestByEmployeeId(int employeeId) throws ClassNotFoundException, IOException, SQLException {
 		Request request = requestLogic.searchByEmployeeId(employeeId);
-		request.setEmployee(searchEmployee(request.getEmployee().getId()));
+		if(request != null) {
+			request.setEmployee(searchEmployee(request.getEmployee().getId()));
+		}
 		return request;
 	}
 
