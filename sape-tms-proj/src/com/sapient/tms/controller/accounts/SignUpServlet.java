@@ -54,6 +54,7 @@ public class SignUpServlet extends HttpServlet {
 				else {
 					Ride ride = employee.getRide();
 					ride.setSeatsAllocated(ride.getSeatsAllocated() + 1);
+					centralLogic.updateRide(ride.getVehicle().getId(), ride);
 					request.setAttribute("status", "Your request is pending.");
 					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}
