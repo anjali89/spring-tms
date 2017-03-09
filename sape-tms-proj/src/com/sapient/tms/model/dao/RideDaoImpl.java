@@ -36,8 +36,8 @@ public class RideDaoImpl implements RideDao {
 			int numAffectedRows;
 			preparedStatement.setString(1, ride.getVehicle().getId());
 			preparedStatement.setInt(2, ride.getRoute().getId());
-			preparedStatement.setString(3, Time.valueOf(ride.getPickupTime()).toString());
-			preparedStatement.setString(4, Time.valueOf(ride.getDropTime()).toString());
+			preparedStatement.setString(3, ride.getPickupTime().toString());
+			preparedStatement.setString(4, ride.getDropTime().toString());
 			preparedStatement.setInt(5, ride.getSeatsAllocated());
 			numAffectedRows = preparedStatement.executeUpdate();
 			return numAffectedRows > 0;
@@ -65,10 +65,12 @@ public class RideDaoImpl implements RideDao {
 				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);) {
 			int updateCount;
 			preparedStatement.setInt(1, newRide.getRoute().getId());
-			preparedStatement.setString(2, Time.valueOf(newRide.getPickupTime()).toString());
-			preparedStatement.setString(3, Time.valueOf(newRide.getDropTime()).toString());
+			preparedStatement.setString(2, newRide.getPickupTime().toString());
+			preparedStatement.setString(3, newRide.getDropTime().toString());
 			preparedStatement.setInt(4, newRide.getSeatsAllocated());
 			preparedStatement.setString(5, newRide.getVehicle().getId());
+			System.out.println(newRide.getPickupTime());
+			System.out.println(newRide.getDropTime());
 			preparedStatement.execute();
 			updateCount = preparedStatement.getUpdateCount();
 			return updateCount > 0;
