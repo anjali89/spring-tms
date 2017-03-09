@@ -50,5 +50,9 @@ public class RequestLogic {
 	public boolean deleteByEmployeeId(int employeeId) throws ClassNotFoundException, IOException, SQLException {
 		return requestDao.deleteByEmployeeId(employeeId);
 	}
+	
+	public boolean updateByEmployeeId(int id, Request request) throws ClassNotFoundException, IOException, SQLException {
+		return requestDao.updateByEmployeeId(id, request);
+	}
 
 }

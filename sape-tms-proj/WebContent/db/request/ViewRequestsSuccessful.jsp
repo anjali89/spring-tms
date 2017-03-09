@@ -11,7 +11,7 @@
   src="https://code.jquery.com/jquery-3.1.1.js"
   integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA="
   crossorigin="anonymous"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/ViewRequestsSuccessful.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/db/request/js/ViewRequestsSuccessful.js"></script>
 </head>
 <body>
 	<h3>Result</h3>
@@ -34,19 +34,20 @@
 						<td>${tempRequest.getEmployee().getRide().getSeatsAllocated()}/
 							${tempRequest.getEmployee().getRide().getVehicle().getCapacity()}</td>
 						<td>
-							<select name="status">
-								<option selected="${tempRequest.isAccepted()?'selected':'' }">ACCPETED</option>
-								<option selected="${tempRequest.isRejected()?'selected':'' }">REJECTED</option>
-								<option selected="${tempRequest.isPending()?'selected':'' }">PENDING</option>
+							<select name="${tempRequest.getEmployee().getId()}">
+								<option ${tempRequest.isAccepted()?'selected':'' } value="ACCEPTED">ACCPETED</option>
+								<option ${tempRequest.isRejected()?'selected':'' } value="REJECTED">REJECTED</option>
+								<option ${tempRequest.isPending()?'selected':'' } value="PENDING">PENDING</option>
 							</select>
 						</td>
 					</tr>
 				</c:forEach>
 			</tr>
 		</table>
+		<input type="button" id="cancelButton" value="Cancel" />
 		<input type="button" id="editButton" value="Edit" />
-		<input type="submit" value="Submit" />
+		<input type="submit" id="submitButton" value="Submit" />
 	</form>
-	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
+	<a href="${pageContext.request.contextPath}/AdminHomeView.jsp">Go back</a>
 </body>
 </html>

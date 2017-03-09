@@ -325,5 +325,9 @@ public class CentralLogic {
 		}
 		return rides;
 	}
+	
+	public boolean updateRequestByEmployeeId(int employeeId, Request request) throws ClassNotFoundException, IOException, SQLException {
+		return requestLogic.updateByEmployeeId(employeeId, request);
+	}
 
 }

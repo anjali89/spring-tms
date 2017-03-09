@@ -14,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import com.sapient.tms.helper.EmployeeAuthenticator;
 import com.sapient.tms.model.bean.Employee;
 import com.sapient.tms.model.bean.Request;
+import com.sapient.tms.model.bean.Ride;
 import com.sapient.tms.model.bl.CentralLogic;
 
 /**
@@ -57,11 +58,14 @@ public class SignInServlet extends HttpServlet {
 				Employee employee = authenticationResult.getKey();
 				Request tempRequest = centralLogic.searchRequestByEmployeeId(employee.getId());
 				if(tempRequest != null) {
-					//Request is still pending
+					//Request has been rejected
 					if(tempRequest.isRejected()) {
+						Ride ride = tempRequest.getEmployee().getRide();
+						ride.setSeatsAllocated(ride.getSeatsAllocated() - 1);
 						request.setAttribute("err", "Your request has been rejected");
 						request.getRequestDispatcher("./accounts/SignInForm.jsp").forward(request, response);
 						centralLogic.deleteRequestByEmployeeId(tempRequest.getEmployee().getId());
+						centralLogic.deleteEmployee(tempRequest.getEmployee().getId());
 					}
 					//Request is still pending
 					else if(tempRequest.isPending()) {

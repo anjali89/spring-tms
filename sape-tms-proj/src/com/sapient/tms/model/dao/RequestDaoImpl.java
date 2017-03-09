@@ -19,7 +19,7 @@ public class RequestDaoImpl implements RequestDao {
 	private static final String SELECT_ALL_QUERY = "SELECT * FROM request";
 	private static final String SELECT_QUERY_BY_EMPLOYEE = "SELECT * FROM request WHERE employee_id = ?";
 	private static final String DELETE_QUERY_BY_EMPLOYEE = "DELETE FROM request WHERE employee_id = ?";
-	private static final String UPDATE_QUERY_BY_REQUEST_ID = "";
+	private static final String UPDATE_QUERY_BY_EMPLOYEE = "UPDATE request SET status = ? WHERE employee_id = ?";
 
 	@Override
 	public boolean insert(Request request) throws IOException, ClassNotFoundException, SQLException {
@@ -82,7 +82,7 @@ public class RequestDaoImpl implements RequestDao {
 	@Override
 	public boolean updateByEmployeeId(int employeeId, Request request) throws IOException, ClassNotFoundException, SQLException {
 		try (Connection connection = JDBCConnection.getConnection();
-				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY_BY_REQUEST_ID);) {
+				PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY_BY_EMPLOYEE);) {
 			preparedStatement.setString(1, request.getStatus());
 			preparedStatement.setInt(2, employeeId);
 			int numRows = preparedStatement.executeUpdate();

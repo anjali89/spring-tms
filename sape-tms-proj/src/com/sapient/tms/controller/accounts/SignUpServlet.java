@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.sapient.tms.helper.EmployeeData;
 import com.sapient.tms.model.bean.Employee;
+import com.sapient.tms.model.bean.Ride;
 import com.sapient.tms.model.bl.CentralLogic;
 import com.sapient.tms.model.bl.EmployeeLogic;
 
@@ -51,6 +52,8 @@ public class SignUpServlet extends HttpServlet {
 					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}
 				else {
+					Ride ride = employee.getRide();
+					ride.setSeatsAllocated(ride.getSeatsAllocated() + 1);
 					request.setAttribute("status", "Your request is pending.");
 					request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 				}

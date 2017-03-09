@@ -317,6 +317,6 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>UpdateRequests</servlet-name>
-    <url-pattern>/UpdateRequestsServlet</url-pattern>
+    <url-pattern>/UpdateRequests</url-pattern>
   </servlet-mapping>
 </web-app>
