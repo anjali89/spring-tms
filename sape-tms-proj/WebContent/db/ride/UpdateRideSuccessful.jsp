@@ -8,7 +8,7 @@
 </head>
 <body>
 	<h3>Update Operation Successful</h3>
-	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
+	<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
 
 </body>
 </html>

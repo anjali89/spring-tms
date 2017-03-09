@@ -11,7 +11,7 @@
 	<c:if test="${not empty requestScope.err}">
 		<c:out value="${requestScope.err}"></c:out>
 	</c:if>
-	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
+	<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
 
 </body>
 </html>

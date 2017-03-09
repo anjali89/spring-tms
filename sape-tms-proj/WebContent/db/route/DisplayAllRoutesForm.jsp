@@ -32,7 +32,7 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<a href="${pageContext.request.contextPath}/db/route/UpdateRouteForm.jsp">Go back</a>
 		</form>
+		<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
 </body>
 </html>

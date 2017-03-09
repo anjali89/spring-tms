@@ -39,6 +39,7 @@
 			</c:forEach>
 		</table>
 		<input type="submit" value="Submit">
+		<a href="${pageContext.request.contextPath }/HomeView.jsp">Go back</a>
 	</form>
 </body>
 </html>

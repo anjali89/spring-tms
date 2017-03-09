@@ -15,6 +15,7 @@
 		Employee ID: <input type="number" name="id" />
 		Password: <input type="password" name="password" />
 		<input type="submit" value="Submit">
+		<a href="${pageContext.request.contextPath }/HomeView.jsp">Go back</a>
 	</form>
 </body>
 </html>

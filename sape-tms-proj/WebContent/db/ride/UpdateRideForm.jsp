@@ -16,5 +16,7 @@
 		Drop Time:<input type="time" name="dropTime" required /><br>
 		Seats Allocated:<input type="number" name="seatsAllocated" required /><br>
 		<input type="submit" value="Submit" />
+	</form>
+	<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
 </body>
 </html>

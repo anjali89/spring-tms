@@ -30,6 +30,6 @@
 			<td>${requestScope.ride.getSeatsAllocated() }</td>
 		</tr>
 	</table>
-	<a href="${pageContext.request.contextPath}/AdminHomeView">Go back</a>
+	<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
 </body>
 </html>

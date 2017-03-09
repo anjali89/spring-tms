@@ -12,5 +12,6 @@
 		ID: <input type="text" name="id" required /><br>
 		<input type="submit" value="Submit" />
 	</form>
+	<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
 </body>
 </html>

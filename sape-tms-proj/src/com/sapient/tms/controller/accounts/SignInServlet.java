@@ -50,7 +50,7 @@ public class SignInServlet extends HttpServlet {
 			isValidEmployee = authenticationResult.getValue();
 			// If authentication fails
 			if (!isValidEmployee) {
-				request.setAttribute("err", "Invalid UserID Or Password");
+				request.setAttribute("status", "Invalid UserID Or Password");
 				request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 			}
 			// If authentication is successful
@@ -63,7 +63,7 @@ public class SignInServlet extends HttpServlet {
 						Ride ride = tempRequest.getEmployee().getRide();
 						ride.setSeatsAllocated(ride.getSeatsAllocated() - 1);
 						centralLogic.updateRide(ride.getVehicle().getId(), ride);
-						request.setAttribute("err", "Your request has been rejected");
+						request.setAttribute("status", "Your request has been rejected");
 						request.getRequestDispatcher("./HomeView.jsp").forward(request, response);
 						centralLogic.deleteRequestByEmployeeId(tempRequest.getEmployee().getId());
 						centralLogic.deleteEmployee(tempRequest.getEmployee().getId());
