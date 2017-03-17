@@ -21,11 +21,11 @@ import com.sapient.tms.model.bean.Request;
 import com.sapient.tms.model.bean.Ride;
 import com.sapient.tms.model.bl.CentralLogic;
 
-@Controller
 public class SignInController {
 
 
-	private CentralLogic centralLogic;
+	private CentralLogic centralLogic=new CentralLogic();
+	
 	
 	boolean isValidEmployee;
 
@@ -34,14 +34,14 @@ public class SignInController {
 			public ModelAndView signInCheck(@ModelAttribute("employee") Employee employee) throws IOException
 			{
 				ModelAndView mv = new ModelAndView("accounts/SignInForm");
-				System.out.println(employee);
+				//System.out.println(employee);
 				
 				try {
 					// Get parameters from request object
 					//ModelAndView mv = new ModelAndView("accounts/SignIn");
 					// Attempt to authenticate user details
 					EmployeeAuthenticator authenticator = new EmployeeAuthenticator();
-					System.out.println(employee.getId());
+					//System.out.println(employee.getId());
 					Map.Entry<Employee, Boolean> authenticationResult = authenticator.authenticate(employee.getId(), employee.getPassword());
 					isValidEmployee = authenticationResult.getValue();
 					// If authentication fails

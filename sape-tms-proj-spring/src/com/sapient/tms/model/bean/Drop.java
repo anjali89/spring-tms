@@ -47,6 +47,13 @@ public class Drop {
 		return "Drop [id=" + id + ", name=" + name + "]";
 	}
 
+	public void setId(int id)
+	{
+		
+		this.id=id;
+	}
+	
+	
 	public String getName() {
 		return name;
 	}
@@ -58,5 +65,7 @@ public class Drop {
 	public int getId() {
 		return id;
 	}
+	
+	
 
 }
