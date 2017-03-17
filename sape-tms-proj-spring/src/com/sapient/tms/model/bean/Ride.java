@@ -89,4 +89,12 @@ public class Ride {
 		this.seatsAllocated = seatsAllocated;
 	}
 
+	public Ride() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	
+	
+	
 }

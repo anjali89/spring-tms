@@ -12,6 +12,15 @@ public class Request {
 		this.employee = employee;
 		this.status = status;
 	}
+	
+	
+
+	public Request() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
 
 	public Employee getEmployee() {
 		return employee;

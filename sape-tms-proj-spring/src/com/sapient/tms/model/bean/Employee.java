@@ -16,6 +16,10 @@ public class Employee {
 		this.isAdmin = isAdmin;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getPassword() {
 		return password;
 	}

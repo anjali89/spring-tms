@@ -10,6 +10,15 @@ public class Drop {
 		this.id = id;
 		this.name = name;
 	}
+	
+	
+
+	public Drop() {
+		super();
+		
+	}
+
+
 
 	@Override
 	public int hashCode() {

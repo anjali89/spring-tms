@@ -18,6 +18,8 @@ public class Vehicle {
 		this.capacity = capacity;
 	}
 
+	
+	
 	public String getModelName() {
 		return modelName;
 	}

@@ -9,9 +9,9 @@
 <title>Sign Up</title>
 </head>
 <body>
-	<% request.setAttribute("rides", new CentralLogic().displayAllAvailableRides()); %>
+	
 	<c:if test="${not empty requestScope.status }">
-		<p id="errorMessage"><c:out value="${requestScope.status}"></c:out></p>
+		<p id="errorMessage"><c:out value="${status}"></c:out></p>
 	</c:if>
 	<h1>Enter details</h1>
 	<form:form action="${pageContext.request.contextPath}/SignUp" method="post" commandName="employee">
@@ -31,9 +31,9 @@
 				<th>Drop Start</th>
 				<th>Seats Allocated / Capacity</th>
 			</tr>
-			<c:forEach var="ride" items="${requestScope.rides}">
+			<c:forEach var="ride" items="${rides}">
 				<tr>
-					<td><form:radiobutton path="vehicleId" value="${ride.getVehicle().getId()}" /></td>
+					<td><form:radiobutton path="ride.vehicle.id" value="${ride.getVehicle().getId()}" /></td>
 					<td>${ride.getVehicle().getBrandName()} ${ride.getVehicle().getModelName()}</td>
 					<td>${ride.getPickupTime() }</td>
 					<td onclick="alert('Drops:\n' + ${ride.getRoute().getDropList().toString()})">${ride.getDropTime() }</td>
