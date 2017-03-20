@@ -29,8 +29,8 @@ public class MainController {
 	public ModelAndView signInForm(@ModelAttribute ("employee")Employee employee)
 	{
 		ModelAndView mv=new ModelAndView("accounts/SignInForm","employee",new Employee());
-//		mv.setViewName("accounts/SignInForm");
-//		mv.addObject("employee", new Employee());
+		mv.setViewName("accounts/SignInForm");
+		mv.addObject("employee", new Employee());
 		return mv;
 		
 	}
@@ -50,6 +50,14 @@ public class MainController {
 		mv.setViewName("accounts/SignUpForm");
 		mv.addObject("employee", new Employee());
 		return mv;
+		
+	}
+	
+	
+	@RequestMapping(value="/goBack")
+	public String goHome()
+	{
+		return "HomeView";		
 		
 	}
 	
