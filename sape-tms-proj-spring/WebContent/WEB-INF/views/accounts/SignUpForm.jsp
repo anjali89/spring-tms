@@ -42,7 +42,7 @@
 			</c:forEach>
 		</table>
 		<input type="submit" value="Submit">
-		<a href="${pageContext.request.contextPath }/HomeView.jsp">Go back</a>
+		<a href="goBack">Come Home</a>
 	</form:form>
 </body>
 </html>

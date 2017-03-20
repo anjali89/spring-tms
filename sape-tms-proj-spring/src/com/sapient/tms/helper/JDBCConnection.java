@@ -17,7 +17,7 @@ public final class JDBCConnection {
 
 	public static synchronized Connection getConnection() throws ClassNotFoundException, SQLException {
 		if (connection == null || connection.isClosed()) {
-			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "anjali");
+			connection = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "system", "sapient@123");
 		}
 		return connection;
 	}

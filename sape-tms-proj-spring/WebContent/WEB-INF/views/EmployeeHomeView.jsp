@@ -17,7 +17,7 @@
 		<p id="status">${requestScope.status }</p>
 	</c:if>
 	<br><br>
-	<a href="goBack">Come Home</a>
+	<a href=./goBack>Come Home</a>
 	
 </body>
 </html>

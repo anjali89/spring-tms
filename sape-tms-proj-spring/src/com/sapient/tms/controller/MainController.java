@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -36,7 +37,7 @@ public class MainController {
 	}
 	
 	
-	@RequestMapping(value="/signUp")
+/*	@RequestMapping(value="/signUp")
 	public ModelAndView signUpForm(@ModelAttribute ("employee")Employee employee)
 	{
 		CentralLogic centralLogic=new CentralLogic();
@@ -51,8 +52,19 @@ public class MainController {
 		mv.addObject("employee", new Employee());
 		return mv;
 		
-	}
+	}*/
 	
+	
+	@RequestMapping(value = "/signUp")
+	public ModelAndView mySignUp(@ModelAttribute("employee") Employee employee, Model model) throws ClassNotFoundException, IOException, SQLException {
+		CentralLogic centralLogic = new CentralLogic();
+		model.addAttribute("rides", centralLogic.displayAllAvailableRides());
+		
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("accounts/SignUpForm");
+		mv.addObject("employee", new Employee());
+		return mv;
+	}
 	
 	@RequestMapping(value="/goBack")
 	public String goHome()

@@ -16,6 +16,6 @@
 	 <form:input path="id" required="required" /><br>
 	 <input type="submit" value="Submit" />
 	</form:form>
-	<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
+	<a href="goBack">Come Home</a>
 </body>
 </html>

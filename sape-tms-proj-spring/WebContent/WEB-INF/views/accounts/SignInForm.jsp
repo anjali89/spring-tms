@@ -12,9 +12,9 @@
 	<c:if test="${not empty requestScope.status }">
 		<p id="errorMessage"><c:out value="${requestScope.status}"></c:out></p>
 	</c:if>
-	<form:form action="SignInCheck" method="post" modelAttribute="employee">
+	<form:form action="signInCheck" method="post" modelAttribute="employee">
 		<form:label path="id">Employee ID:</form:label>
-		<form:input path="id" type="number" />
+		<form:input path="id" />
 		<form:label path="password">Password:</form:label>
 		<form:password path="password" />
 		<input type="submit" value="Submit">

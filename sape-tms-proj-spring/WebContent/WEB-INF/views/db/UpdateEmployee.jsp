@@ -14,7 +14,7 @@
 		<form:label path="id">ID:</form:label>
 	    <form:input path="id" required="required" /><br>
 		<form:label path="password">New Password: </form:label>
-		<form:input type="password" path="password" required="required" /><br>
+		<form:password path="password" required="required" /><br>
 		<form:label path="name">Employee Name:</form:label>
 		<form:input type="text" path="name" required="required"/><br>
 		<form:label path="vehicleId">Vehicle id:</form:label>

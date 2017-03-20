@@ -48,6 +48,6 @@
 		<!-- Drop place name: <input type="text" name="dropName" required /><br> -->
 		<input type="submit" value="submit" />
 	</form:form>
-	<a href="${pageContext.request.contextPath }/AdminHomeView.jsp">Go back</a>
+	<a href="goBack">Come Home</a>
 </body>
 </html>

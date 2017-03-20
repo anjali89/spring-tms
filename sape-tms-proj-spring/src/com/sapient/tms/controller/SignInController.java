@@ -4,15 +4,14 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sapient.tms.helper.EmployeeAuthenticator;
@@ -21,7 +20,10 @@ import com.sapient.tms.model.bean.Request;
 import com.sapient.tms.model.bean.Ride;
 import com.sapient.tms.model.bl.CentralLogic;
 
-public class SignInController {
+
+@Controller
+
+public class SignInController extends HttpServlet{
 
 
 	private CentralLogic centralLogic=new CentralLogic();
@@ -30,8 +32,8 @@ public class SignInController {
 	boolean isValidEmployee;
 
 
-			@RequestMapping("/SignInCheck")
-			public ModelAndView signInCheck(@ModelAttribute("employee") Employee employee) throws IOException
+			@RequestMapping("/signInCheck")
+			public ModelAndView signInCheck(@ModelAttribute("employee") Employee employee, HttpSession session) throws IOException
 			{
 				ModelAndView mv = new ModelAndView("accounts/SignInForm");
 				//System.out.println(employee);
@@ -79,7 +81,7 @@ public class SignInController {
 								
 								mv.addObject("ses", employee);
 								if(!employee.isAdmin()) {
-									return (new ModelAndView("EmployeeHomeView"));
+									return (new ModelAndView("db/Employee"));
 								}
 								else {
 									return (new ModelAndView("AdminHomeView"));
@@ -90,7 +92,7 @@ public class SignInController {
 							
 							mv.addObject("ses", employee);
 							if(!employee.isAdmin()) {
-								return (new ModelAndView("EmployeeHomeView"));
+								return (new ModelAndView("db/Employee"));
 							}
 							else {
 								return (new ModelAndView("AdminHomeView"));
@@ -103,6 +105,17 @@ public class SignInController {
 				}
 				return mv;
 			}
+			
+			
+			@RequestMapping(value="rideInfo")
+			public ModelAndView viewRideInfo(@ModelAttribute("employee") Employee employee, HttpSession session) throws IOException
+			{
+				ModelAndView mv = new ModelAndView("db/");
+				
+				return mv;
+				
+			}
+			
 			
 		}
 
