@@ -74,6 +74,14 @@ public class MainController {
 	}
 	
 	
+	@RequestMapping(value="/signOut")
+	public ModelAndView signOut(@ModelAttribute ("employee")Employee employee)
+	{
+		return "HomeView";		
+		
+	}
+	
+	
 	
 	
 	

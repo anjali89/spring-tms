@@ -14,7 +14,7 @@
 		<p id="errorMessage"><c:out value="${status}"></c:out></p>
 	</c:if>
 	<h1>Enter details</h1>
-	<form:form action="${pageContext.request.contextPath}/SignUp" method="post" commandName="employee">
+	<form:form action="signUp1" method="post" modelAttribute="employee">
 		
 		<form:label path="id"> Employee ID:</form:label>
 		 <form:input type="number" path="id" required="required"/>
