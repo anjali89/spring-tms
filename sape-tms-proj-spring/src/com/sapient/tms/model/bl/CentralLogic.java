@@ -80,7 +80,7 @@ public class CentralLogic {
 
 	}
 
-	// test
+	
 	public Route searchRoute(int routeId) throws ClassNotFoundException, IOException, SQLException {
 		Route route = routeLogic.search(routeId);
 		route.setDropList(searchRouteMappings(route));

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.HttpSessionRequiredException;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +23,7 @@ import com.sapient.tms.model.bl.CentralLogic;
 
 
 @Controller
+@SessionAttributes("userId")
 
 public class SignInController extends HttpServlet{
 
@@ -33,22 +35,18 @@ public class SignInController extends HttpServlet{
 
 
 			@RequestMapping("/signInCheck")
-			public ModelAndView signInCheck(@ModelAttribute("employee") Employee employee, HttpSession session) throws IOException
+			public ModelAndView signInCheck(@ModelAttribute("employee") Employee employee, ModelMap model) throws IOException
 			{
 				ModelAndView mv = new ModelAndView("accounts/SignInForm");
-				//System.out.println(employee);
-				
 				try {
 					// Get parameters from request object
-					//ModelAndView mv = new ModelAndView("accounts/SignIn");
+					System.out.println(employee.getId());
 					// Attempt to authenticate user details
 					EmployeeAuthenticator authenticator = new EmployeeAuthenticator();
-					//System.out.println(employee.getId());
-					Map.Entry<Employee, Boolean> authenticationResult = authenticator.authenticate(employee.getId(), employee.getPassword());
+					Map.Entry<Employee, Boolean> authenticationResult = authenticator.authenticate(employee.getId(),employee.getPassword());
 					isValidEmployee = authenticationResult.getValue();
 					// If authentication fails
 					if (!isValidEmployee) {
-						System.out.println(employee);
 						mv.addObject("status", "Invalid UserID Or Password");
 						return mv;
 					}
@@ -81,7 +79,7 @@ public class SignInController extends HttpServlet{
 								
 								mv.addObject("ses", employee);
 								if(!employee.isAdmin()) {
-									return (new ModelAndView("db/Employee"));
+									return (new ModelAndView("EmployeeHomeView"));
 								}
 								else {
 									return (new ModelAndView("AdminHomeView"));
@@ -91,8 +89,10 @@ public class SignInController extends HttpServlet{
 						else {
 							
 							mv.addObject("ses", employee);
+							model.addAttribute("userId", employee.getId());
 							if(!employee.isAdmin()) {
-								return (new ModelAndView("db/Employee"));
+								;
+								return (new ModelAndView("EmployeeHomeView"));
 							}
 							else {
 								return (new ModelAndView("AdminHomeView"));
@@ -100,7 +100,6 @@ public class SignInController extends HttpServlet{
 						}
 					}
 				} catch (ClassNotFoundException | SQLException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 				return mv;

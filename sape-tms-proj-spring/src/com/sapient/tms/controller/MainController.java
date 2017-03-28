@@ -3,11 +3,14 @@ package com.sapient.tms.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.sapient.tms.model.bean.Employee;
@@ -15,6 +18,7 @@ import com.sapient.tms.model.bl.CentralLogic;
 
 @Controller
 @RequestMapping("/")
+@SessionAttributes("userId")
 
 public class MainController {
 	
@@ -37,22 +41,7 @@ public class MainController {
 	}
 	
 	
-/*	@RequestMapping(value="/signUp")
-	public ModelAndView signUpForm(@ModelAttribute ("employee")Employee employee)
-	{
-		CentralLogic centralLogic=new CentralLogic();
-		ModelAndView mv=new ModelAndView();
-		try {
-			mv.addObject("rides", centralLogic.displayAllAvailableRides());
-		} catch (ClassNotFoundException|IOException|SQLException e) {
-			
-			e.printStackTrace();
-		}
-		mv.setViewName("accounts/SignUpForm");
-		mv.addObject("employee", new Employee());
-		return mv;
-		
-	}*/
+
 	
 	
 	@RequestMapping(value = "/signUp")
@@ -74,12 +63,12 @@ public class MainController {
 	}
 	
 	
-	@RequestMapping(value="/signOut")
-	public ModelAndView signOut(@ModelAttribute ("employee")Employee employee)
-	{
-		return "HomeView";		
-		
-	}
+	 @RequestMapping("/signOut")
+	      public String logout(HttpSession session) {
+	        session.invalidate();
+	        return "HomeView";
+	      }
+
 	
 	
 	

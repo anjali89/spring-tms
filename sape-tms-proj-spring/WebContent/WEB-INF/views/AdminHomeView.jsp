@@ -8,9 +8,10 @@
 <title>Admin Home</title>
 </head>
 <body>
+<h1>Admin Home View</h1>
 	<ul>
-		<li><a href="${pageContext.request.contextPath}/ViewRequests">View Requests</a></li>
-		<li><a href="${pageContext.request.contextPath}/SignOut">Sign Out</a></li>
+		<li><a href="ViewRequests">View Requests</a></li>	  
+		<li><a href="signOut">Sign Out</a></li>
 	</ul>
 	<c:if test="${not empty requestScope.status }">
 		<p id="status">${requestScope.status }</p>
